@@ -10,3 +10,16 @@ export PATH=~/.local/bin:~/go/bin:/snap/bin:$PATH
 for completion_bash in ~/.local/bash-completion/completions/* ; do 
     source "$completion_bash"
 done
+
+# Custom func
+function dotenv() {
+    if [ "$#" == 0 ]; then 
+        echo "Missing env files"
+    fi
+
+    for i in $@; do
+        echo Get env from $i
+        echo $(grep -v '^#' ${i} | xargs)
+        export $(grep -v '^#' ${i} | xargs)
+    done
+}
