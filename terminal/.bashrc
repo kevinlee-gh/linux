@@ -1,5 +1,3 @@
-# >>> PERSONAL PATH
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '~/.local/lib/google-cloud-sdk/path.bash.inc' ]; then . '~/.local/lib/google-cloud-sdk/path.bash.inc'; fi
 
@@ -27,5 +25,3 @@ function dotenv() {
 alias branch="git branch --show-current"
 alias feat="echo 'feat(`branch`)'"
 alias fix="echo 'fix(`branch`)'"
-
-# <<< PERSONAL PATH

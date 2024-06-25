@@ -9,3 +9,10 @@ fi
 ./terminal/link_bin.sh
 
 # Get personal bashrc
+sed -i '/^# >>> PERSONAL PATH$/,/^# <<< PERSONAL PATH$/d' ~/.bashrc
+
+echo "" >> ~/.bashrc
+echo "# >>> PERSONAL PATH" >> ~/.bashrc
+cat ./terminal/.bashrc >> ~/.bashrc
+echo "" >> ~/.bashrc
+echo "# <<< PERSONAL PATH" >> ~/.bashrc
