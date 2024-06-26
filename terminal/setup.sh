@@ -20,10 +20,15 @@ cat "${FILE_DIR}/utils/.bashrc" >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "# <<< PERSONAL PATH" >> ~/.bashrc
 
-
-# Add alacritty config
+# Add configs
 echo "  + Add '~/.config':"
 
+### Add alacritty config
 echo "    * 'alacritty/alacritty.toml'"
 mkdir -p ~/.config/alacritty/
 ln -sf ${FILE_DIR}/config/alacritty/alacritty.toml ~/.config/alacritty/
+
+### Add zellij config
+echo "    * 'zellij/config.kdl'"
+mkdir -p ~/.config/zellij/
+ln -sf ${FILE_DIR}/config/zellij/config.kdl ~/.config/zellij/

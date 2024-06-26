@@ -5,8 +5,9 @@ snap
 
 # Terminal emulator
 bash-completion
-alacritty
-zellij
+alacritty # bash emulator
+zellij # workspace
+hyperland # make color tool =)))
 
 # DevOps 
 docker
