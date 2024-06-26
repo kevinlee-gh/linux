@@ -23,12 +23,7 @@ echo "# <<< PERSONAL PATH" >> ~/.bashrc
 # Add configs
 echo "  + Add '~/.config':"
 
-### Add alacritty config
-echo "    * 'alacritty/alacritty.toml'"
-mkdir -p ~/.config/alacritty/
-ln -sf ${FILE_DIR}/config/alacritty/alacritty.toml ~/.config/alacritty/
-
-### Add zellij config
-echo "    * 'zellij/config.kdl'"
-mkdir -p ~/.config/zellij/
-ln -sf ${FILE_DIR}/config/zellij/config.kdl ~/.config/zellij/
+for CONFIG_DIRNAME in $(ls ${FILE_DIR}/config); do
+    echo "    * ${CONFIG_DIRNAME}"
+    ln -sf "${FILE_DIR}/config/${CONFIG_DIRNAME}" ~/.config/${CONFIG_DIRNAME}
+done

@@ -3,18 +3,21 @@ conda
 go
 snap
 
+# os packages
+curl 
+wget
+fio
+
 # Terminal emulator
 bash-completion
 alacritty # bash emulator
 zellij # workspace
 hyperland # make color tool =)))
 
+# Code
+code # prefer snap version
+
 # DevOps 
 docker
 helm
 kubectl
-
-# os packages
-curl 
-wget
-fio
