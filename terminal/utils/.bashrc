@@ -29,3 +29,6 @@ alias fix='echo "fix($(branch))"'
 
 # Fast move
 alias "cdw"="cd ~/workspace"
+
+# Starship
+eval "$(starship init bash)"
