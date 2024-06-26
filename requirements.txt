@@ -13,3 +13,8 @@ hyperland # make color tool =)))
 docker
 helm
 kubectl
+
+# os packages
+curl 
+wget
+fio
