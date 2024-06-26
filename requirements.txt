@@ -12,7 +12,6 @@ fio
 bash-completion
 alacritty # bash emulator
 zellij # workspace
-hyperland # make color tool =)))
 
 # Code
 code # prefer snap version
