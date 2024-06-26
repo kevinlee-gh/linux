@@ -1,5 +1,5 @@
 tilda_config_version="2.0.0"
-command="zellij options --theme catppuccin-latte"
+command="zellij"
 font="Monospace 11"
 key="F1"
 addtab_key="NULL"

@@ -1,7 +1,10 @@
-pane_frames false
+pane_frames true
 ui {
     pane_frames {
-        hide_session_name true
+        hide_session_name false
     }
 }
-// default_layout "default.swap"
+simplified_ui false
+
+theme "catppuccin-mocha"
+default_layout "custom"
