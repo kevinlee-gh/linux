@@ -8,3 +8,8 @@ simplified_ui false
 
 theme "catppuccin-mocha"
 default_layout "custom"
+
+mouse_mode true
+copy_command "xclip -selection clipboard" 
+copy_clipboard "primary"
+copy_on_select true
