@@ -26,4 +26,4 @@ echo "  + Add '~/.config':"
 
 echo "    * 'alacritty/alacritty.toml'"
 mkdir -p ~/.config/alacritty/
-ln -sf ${FILE_DIR}/config/alacritty.toml ~/.config/alacritty/
+ln -sf ${FILE_DIR}/config/alacritty/alacritty.toml ~/.config/alacritty/
