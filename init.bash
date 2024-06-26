@@ -15,10 +15,14 @@ for BIN_NAME in $(ls ${FILE_DIR}/terminal/bin); do
 done
 
 # Get personal bashrc
+
+### remove old personal bashrc
 sed -i '/^# >>> PERSONAL PATH$/,/^# <<< PERSONAL PATH$/d' ~/.bashrc
 
+### add new personal bashrc
 echo "" >> ~/.bashrc
 echo "# >>> PERSONAL PATH" >> ~/.bashrc
 cat ./terminal/.bashrc >> ~/.bashrc
 echo "" >> ~/.bashrc
 echo "# <<< PERSONAL PATH" >> ~/.bashrc
+
