@@ -22,6 +22,7 @@ function dotenv() {
     done
 }
 
+# git comment prefix
 alias branch="git branch --show-current"
 alias feat="echo 'feat(`branch`)'"
 alias fix="echo 'fix(`branch`)'"

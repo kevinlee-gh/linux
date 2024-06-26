@@ -1,0 +1,14 @@
+# Packages installer
+conda
+go
+snap
+
+# Terminal emulator
+bash-completion
+alacritty
+zellij
+
+# DevOps 
+docker
+helm
+kubectl
