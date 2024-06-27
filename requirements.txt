@@ -10,7 +10,7 @@ fio
 
 # Terminal emulator
 bash-completion
-alacritty # bash emulator
+guake # dropdown terminal
 zellij # workspace
 
 # Code

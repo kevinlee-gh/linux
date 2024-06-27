@@ -38,3 +38,6 @@ for CONFIG_DIRNAME in $(ls ${FILE_DIR}/config); do
     ln -s ${SOURCE_DIR} ${DESTINATION_DIR}
 
 done
+
+# Activate guake config
+guake --restore-preferences ~/.config/guake/custom.cfg
