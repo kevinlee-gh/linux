@@ -1,6 +1,10 @@
 FILE_DIR=$(dirname `realpath $0`)
 
 echo "Setup terminal emulator:"
+
+# Add env file
+ln -sf ${FILE_DIR}/utils/.env ~/.local/.env
+
 # Get personal bins
 echo "  + Get custom bin files"
 for BIN_NAME in $(ls ${FILE_DIR}/bin); do

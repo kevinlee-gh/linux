@@ -9,18 +9,40 @@ for completion_bash in ~/.local/bash-completion/completions/* ; do
     source "$completion_bash"
 done
 
-# Custom func
-function dotenv() {
-    if [ "$#" == 0 ]; then 
-        echo "Missing env files"
-    fi
+# Custom functions
+
+dotenv() {(
+    ############################
+    # Load env from .env files #
+    ############################
+
+    if [ "$#" == 0 ]; then echo "Missing env files"; fi
+
+    envNoCommentAndBlank() {
+        cat ${i} | grep -v "^#" | grep -v "^[[:space:]]*$"
+    }
+    validRegex="^([\w]+)=(([^# \"\']*)|\"(.*)\"|\'(.*)\')( *)$"
 
     for i in $@; do
-        echo Get env from $i
-        echo $(grep -v '^#' ${i} | xargs)
-        export $(grep -v '^#' ${i} | xargs)
+        # Check valid of env file
+        if [ $( envNoCommentAndBlank | grep -vP "$validRegex" | wc -l) != "0" ]; then
+            # If not include '='
+            echo "Invalid syntax in '${i}':"
+            envNoCommentAndBlank | grep -vP "$validRegex" | sed 's/^/  * /'
+            continue
+        fi
+
+        # Get envs from env file
+        if [[ ! $i -ef ~/.local/.env ]]; then
+            echo Get env from $i:
+            envNoCommentAndBlank | grep -P "$validRegex" | sed 's/^/  * /'
+        fi
+        export $( envNoCommentAndBlank | grep -P "$validRegex")
     done
-}
+)}
+
+# Load envs
+dotenv ~/.local/.env
 
 # git comment prefix
 alias branch="git branch --show-current"
