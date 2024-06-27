@@ -33,11 +33,11 @@ dotenv() {(
         fi
 
         # Get envs from env file
-        if [[ ! $i -ef ~/.local/.env ]]; then
+        if [[ ! $i -ef ~/.local/.env ]] ; then
             echo Get env from $i:
             envNoCommentAndBlank | grep -P "$validRegex" | sed 's/^/  * /'
         fi
-        export $( envNoCommentAndBlank | grep -P "$validRegex")
+        eval "export $( envNoCommentAndBlank | grep -P "$validRegex" )"
     done
 )}
 
