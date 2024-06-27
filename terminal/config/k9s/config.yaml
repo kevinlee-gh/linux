@@ -54,6 +54,7 @@ _ui: &ui
   reactive: false
   noIcons: false
   defaultsToFullScreen: false
+  skin: custom
 
 _shellPod: &shellPod
   image: busybox:1.35.0
