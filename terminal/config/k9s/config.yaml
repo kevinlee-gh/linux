@@ -1,20 +1,3 @@
-_ui: &ui
-  enableMouse: false
-  headless: false
-  logoless: false
-  crumbsless: false
-  reactive: false
-  noIcons: false
-  defaultsToFullScreen: false
-
-_shellPod: &shellPod
-  image: busybox:1.35.0
-  namespace: default
-  limits:
-    cpu: 100m
-    memory: 100Mi
-  tty: true
-
 _defaultConfigs: &defaultConfigs
   screenDumpDir: ~/.local/state/k9s/screen-dumps
   # Enable periodic refresh of resource browser windows. Default false
@@ -63,16 +46,30 @@ _defaultConfigs: &defaultConfigs
       critical: 90
       warn: 70
 
+_ui: &ui
+  enableMouse: false
+  headless: false
+  logoless: false
+  crumbsless: false
+  reactive: false
+  noIcons: false
+  defaultsToFullScreen: false
 
+_shellPod: &shellPod
+  image: busybox:1.35.0
+  namespace: default
+  limits:
+    cpu: 100m
+    memory: 100Mi
+  tty: true
 
 # MAIN PATH
 k9s:
   <<: *defaultConfigs
 
-  liveViewAutoRefresh: true
-  
+  liveViewAutoRefresh: true  
   ui: *ui    
-  shellPod: &shellPod
+  shellPod: *shellPod
 
     
   # featureGates: 
