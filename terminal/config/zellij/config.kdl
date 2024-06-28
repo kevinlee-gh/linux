@@ -17,48 +17,7 @@ copy_on_select true
 // keybind configs
 // TODO: F2 - rename app / tab
 keybinds clear-defaults=true {
-    shared {
-        bind "Ctrl q" { Quit; }
-    }
-    locked {
-        bind "F2" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "Ctrl g" { SwitchToMode "Normal"; }
-
-        // Tab
-        bind "Ctrl t" { NewTab; }
-
-        bind "Ctrl u" { MoveTab "Left"; }
-        bind "Ctrl o" { MoveTab "Right"; }
-
-        bind "Ctrl j" { GoToPreviousTab; }
-        bind "Ctrl l" { GoToNextTab; }
-
-        // Pane
-        bind "Alt t" { NewPane; }
-        bind "Alt i" { MoveFocus "Up"; } 
-        bind "Alt j" { MoveFocus "Left"; }
-        bind "Alt k" { MoveFocus "Down"; }
-        bind "Alt l" { MoveFocus "Right"; }
-
-        bind "Alt Left" { Resize "Increase Left"; }
-        bind "Alt Down" { Resize "Increase Down"; }
-        bind "Alt Up" { Resize "Increase Up"; }
-        bind "Alt Right" { Resize "Increase Right"; }
-    }
-    shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Alt n" { NewPane; }
-        bind "Alt i" { MoveTab "Left"; }
-        bind "Alt o" { MoveTab "Right"; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-        bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-    }
+    // NOTE Default configs
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
@@ -159,30 +118,6 @@ keybinds clear-defaults=true {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
-    search {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        bind "n" { Search "down"; }
-        bind "p" { Search "up"; }
-        bind "c" { SearchToggleOption "CaseSensitivity"; }
-        bind "w" { SearchToggleOption "Wrap"; }
-        bind "o" { SearchToggleOption "WholeWord"; }
-    }
-    entersearch {
-        bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
-        bind "Enter" { SwitchToMode "Search"; }
-    }
-    renametab {
-        bind "Ctrl c" { SwitchToMode "Locked"; }
-        bind "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
-        bind "Enter" { SwitchToMode "Locked"; }
-    }
     renamepane {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
@@ -198,5 +133,83 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal"
         }
+    }
+
+    // NOTE Custom configs
+    shared {
+        bind "Ctrl q" { Quit; }
+    }
+    locked {
+        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "F2" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Ctrl f" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        
+        // Tab
+        bind "Ctrl t" { NewTab; }
+        bind "Ctrl w" { CloseTab; }
+        bind "Ctrl b" { BreakPane; }
+
+        bind "Ctrl u" { MoveTab "Left"; }
+        bind "Ctrl o" { MoveTab "Right"; }
+
+        bind "Ctrl j" { GoToPreviousTab; }
+        bind "Ctrl l" { GoToNextTab; }
+
+
+        // Pane
+        bind "Alt t" { NewPane; }
+
+        bind "Alt i" { MoveFocus "Up"; } 
+        bind "Alt j" { MoveFocus "Left"; }
+        bind "Alt k" { MoveFocus "Down"; }
+        bind "Alt l" { MoveFocus "Right"; }
+
+        bind "Alt I" { MovePane "Up"; } 
+        bind "Alt J" { MovePane "Left"; }
+        bind "Alt K" { MovePane "Down"; }
+        bind "Alt L" { MovePane "Right"; }
+
+        bind "Alt Left" { Resize "Increase Left"; }
+        bind "Alt Down" { Resize "Increase Down"; }
+        bind "Alt Up" { Resize "Increase Up"; }
+        bind "Alt Right" { Resize "Increase Right"; }
+    }
+    renametab {
+        bind "Esc" "Ctrl c" { UndoRenameTab; SwitchToMode "Locked"; }
+        bind "Enter" { SwitchToMode "Locked"; }
+    }
+    search {
+        bind "Ctrl c" "Esc" { ScrollToBottom; SwitchToMode "Locked"; }
+        bind "Down" { ScrollDown; }
+        bind "Up" { ScrollUp; }
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp" { PageScrollUp; }
+        bind "Enter" "n" { Search "down"; }
+        bind "N" { Search "up"; }
+        bind "c" { SearchToggleOption "CaseSensitivity"; }
+        bind "w" { SearchToggleOption "Wrap"; }
+        bind "o" { SearchToggleOption "WholeWord"; }
+    }
+    entersearch {
+        bind "Ctrl c" "Esc" { SwitchToMode "Locked"; }
+        bind "Enter" { SwitchToMode "Search"; }
+    }
+    shared_among "renametab" "search" "entersearch" {
+        unbind "Ctrl p" "Ctrl n" "Ctrl s" "Ctrl o" "Ctrl t" "Ctrl h"
+    }
+
+    shared_except "locked" "renametab" "search" "entersearch" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+        bind "Alt n" { NewPane; }
+        bind "Alt i" { MoveTab "Left"; }
+        bind "Alt o" { MoveTab "Right"; }
+        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
+        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
+        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
+        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
+        bind "Alt =" "Alt +" { Resize "Increase"; }
+        bind "Alt -" { Resize "Decrease"; }
+        bind "Alt [" { PreviousSwapLayout; }
+        bind "Alt ]" { NextSwapLayout; }
     }
 }
