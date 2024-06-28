@@ -20,6 +20,31 @@ keybinds clear-defaults=true {
     shared {
         bind "Ctrl q" { Quit; }
     }
+    locked {
+        bind "F2" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Ctrl g" { SwitchToMode "Normal"; }
+
+        // Tab
+        bind "Ctrl t" { NewTab; }
+
+        bind "Ctrl u" { MoveTab "Left"; }
+        bind "Ctrl o" { MoveTab "Right"; }
+
+        bind "Ctrl j" { GoToPreviousTab; }
+        bind "Ctrl l" { GoToNextTab; }
+
+        // Pane
+        bind "Alt t" { NewPane; }
+        bind "Alt i" { MoveFocus "Up"; } 
+        bind "Alt j" { MoveFocus "Left"; }
+        bind "Alt k" { MoveFocus "Down"; }
+        bind "Alt l" { MoveFocus "Right"; }
+
+        bind "Alt Left" { Resize "Increase Left"; }
+        bind "Alt Down" { Resize "Increase Down"; }
+        bind "Alt Up" { Resize "Increase Up"; }
+        bind "Alt Right" { Resize "Increase Right"; }
+    }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Alt n" { NewPane; }
@@ -58,9 +83,6 @@ keybinds clear-defaults=true {
     normal {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
-    }
-    locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
     }
     resize {
         bind "Ctrl n" { SwitchToMode "Normal"; }
@@ -157,8 +179,9 @@ keybinds clear-defaults=true {
         bind "Enter" { SwitchToMode "Search"; }
     }
     renametab {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "Ctrl c" { SwitchToMode "Locked"; }
+        bind "Esc" { UndoRenameTab; SwitchToMode "Locked"; }
+        bind "Enter" { SwitchToMode "Locked"; }
     }
     renamepane {
         bind "Ctrl c" { SwitchToMode "Normal"; }
