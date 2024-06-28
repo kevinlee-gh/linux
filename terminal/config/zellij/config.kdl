@@ -43,6 +43,7 @@ keybinds clear-defaults=true {
 
     normal {
         bind "Ctrl f" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "F2" { SwitchToMode "RenameTab"; TabNameInput 0; }
     }
     resize {
         bind "Alt n" { SwitchToMode "Normal"; }
@@ -122,8 +123,7 @@ keybinds clear-defaults=true {
         bind "Enter" { SwitchToMode "Search"; }
     }
     renametab {
-        bind "Ctrl c" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenameTab; SwitchToMode "Tab"; }
+        bind "Esc" "Ctrl c" { UndoRenameTab; SwitchToMode "Normal";}
     }
     renamepane {
         bind "Ctrl c" { SwitchToMode "Normal"; }
