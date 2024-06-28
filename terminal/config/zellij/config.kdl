@@ -18,6 +18,15 @@ copy_on_select true
 keybinds clear-defaults=true {
     shared {
         bind "Alt F4" { Quit; }
+
+        // Modes 
+        bind "Alt p" { SwitchToMode "Pane"; }
+        bind "Alt n" { SwitchToMode "Resize"; }
+        bind "Alt s" { SwitchToMode "Scroll"; }
+        bind "Alt o" { SwitchToMode "Session"; }
+        bind "Alt t" { SwitchToMode "Tab"; }
+        bind "Alt h" { SwitchToMode "Move"; }
+
         // TODO
         // bind "Alt n" { NewPane; }
         // bind "Alt i" { MoveTab "Left"; }
@@ -31,6 +40,10 @@ keybinds clear-defaults=true {
         // bind "Alt [" { PreviousSwapLayout; }
         // bind "Alt ]" { NextSwapLayout; }
     }
+    shared_except "normal" {
+        bind "Enter" "Esc" { SwitchToMode "Normal"; }
+    }
+
     normal {
     }
     resize {
@@ -146,27 +159,5 @@ keybinds clear-defaults=true {
             };
             SwitchToMode "Normal"
         }
-    }
-
-    shared_except "normal" {
-        bind "Enter" "Esc" { SwitchToMode "Normal"; }
-    }
-    shared_except "pane" {
-        bind "Alt p" { SwitchToMode "Pane"; }
-    }
-    shared_except "resize" {
-        bind "Alt n" { SwitchToMode "Resize"; }
-    }
-    shared_except "scroll" {
-        bind "Alt s" { SwitchToMode "Scroll"; }
-    }
-    shared_except "session" {
-        bind "Alt o" { SwitchToMode "Session"; }
-    }
-    shared_except "tab" {
-        bind "Alt t" { SwitchToMode "Tab"; }
-    }
-    shared_except "move" {
-        bind "Alt h" { SwitchToMode "Move"; }
     }
 }
