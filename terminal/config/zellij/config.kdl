@@ -5,7 +5,7 @@ ui {
     }
 }
 theme "catppuccin-mocha"
-default_layout "custom"
+default_layout "main"
 default_mode "normal"
 
 // Mouse configs
