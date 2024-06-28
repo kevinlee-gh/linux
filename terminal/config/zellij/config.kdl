@@ -17,12 +17,9 @@ copy_on_select true
 // keybind configs
 keybinds clear-defaults=true {
     shared {
-        bind "Alt F4" { Quit; }
-
         // Modes 
         bind "Alt p" { SwitchToMode "Pane"; }
         bind "Alt n" { SwitchToMode "Resize"; }
-        bind "Alt s" { SwitchToMode "Scroll"; }
         bind "Alt o" { SwitchToMode "Session"; }
         bind "Alt t" { SwitchToMode "Tab"; }
         bind "Alt h" { SwitchToMode "Move"; }
@@ -45,6 +42,7 @@ keybinds clear-defaults=true {
     }
 
     normal {
+        bind "Ctrl f" { SwitchToMode "EnterSearch"; SearchInput 0; }
     }
     resize {
         bind "Alt n" { SwitchToMode "Normal"; }
@@ -107,37 +105,20 @@ keybinds clear-defaults=true {
         bind "9" { GoToTab 9; SwitchToMode "Normal"; }
         bind "Tab" { ToggleTab; }
     }
-    scroll {
-        bind "Alt s" { SwitchToMode "Normal"; }
-        bind "e" { EditScrollback; SwitchToMode "Normal"; }
-        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        // uncomment this and adjust key if using copy_on_select=false
-        // bind "Alt c" { Copy; }
-    }
     search {
-        bind "Alt s" { SwitchToMode "Normal"; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
-        bind "j" "Down" { ScrollDown; }
-        bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        bind "n" { Search "down"; }
-        bind "p" { Search "up"; }
+        bind "Ctrl c" "Esc" { ScrollToBottom; SwitchToMode "Normal"; }
+        bind "Down" { ScrollDown; }
+        bind "Up" { ScrollUp; }
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp" { PageScrollUp; }
+        bind "Enter" "n" { Search "down"; }
+        bind "N" { Search "up"; }
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
         bind "o" { SearchToggleOption "WholeWord"; }
     }
     entersearch {
-        bind "Ctrl c" "Esc" { SwitchToMode "Scroll"; }
+        bind "Ctrl c" "Esc" { SwitchToMode "Normal"; }
         bind "Enter" { SwitchToMode "Search"; }
     }
     renametab {
