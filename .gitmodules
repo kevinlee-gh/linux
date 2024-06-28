@@ -1,0 +1,3 @@
+[submodule "terminal/config/zellij/src"]
+	path = terminal/config/zellij/src
+	url = https://github.com/zellij-org/zellij.git
