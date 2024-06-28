@@ -21,7 +21,6 @@ keybinds clear-defaults=true {
         bind "Alt P" { SwitchToMode "Pane"; }
         bind "Alt T" { SwitchToMode "Tab"; }
         bind "Alt O" { SwitchToMode "Session"; }
-        bind "Alt H" { SwitchToMode "Move"; }
     }
     shared_except "normal" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -48,11 +47,8 @@ keybinds clear-defaults=true {
     }
     pane {
         bind "Alt P" { SwitchToMode "Normal"; }
-        
-        bind "Left" { Resize "Increase Left"; }
-        bind "Down" { Resize "Increase Down"; }
-        bind "Up" { Resize "Increase Up"; }
-        bind "Right" { Resize "Increase Right"; }
+        bind "r" { SwitchToMode "Resize"; }
+        bind "m" { SwitchToMode "Move"; }
     }
     tab {
         bind "Alt T" { SwitchToMode "Normal"; }
@@ -62,15 +58,29 @@ keybinds clear-defaults=true {
         bind "Left" { MoveTab "Left"; }
         bind "Right" { MoveTab "Right"; }
     }
+    session {
+        bind "Alt O" { SwitchToMode "Normal"; }
+        bind "d" { Detach; }
+        bind "w" {
+            LaunchOrFocusPlugin "session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+    }
     
+    resize {
+        bind "Left" { Resize "Increase Left"; }
+        bind "Down" { Resize "Increase Down"; }
+        bind "Up" { Resize "Increase Up"; }
+        bind "Right" { Resize "Increase Right"; }
+    }
     move {
-        bind "Alt h" { SwitchToMode "Normal"; }
-        bind "n" "Tab" { MovePane; }
-        bind "p" { MovePaneBackwards; }
-        bind "h" "Left" { MovePane "Left"; }
-        bind "j" "Down" { MovePane "Down"; }
-        bind "k" "Up" { MovePane "Up"; }
-        bind "l" "Right" { MovePane "Right"; }
+        bind "Left" { MovePane "Left"; }
+        bind "Down" { MovePane "Down"; }
+        bind "Up" { MovePane "Up"; }
+        bind "Right" { MovePane "Right"; }
     }
     
     search {
@@ -96,16 +106,5 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
-    session {
-        bind "Alt o" { SwitchToMode "Normal"; }
-        bind "Alt s" { SwitchToMode "Scroll"; }
-        bind "d" { Detach; }
-        bind "w" {
-            LaunchOrFocusPlugin "session-manager" {
-                floating true
-                move_to_focused_tab true
-            };
-            SwitchToMode "Normal"
-        }
-    }
+    
 }
