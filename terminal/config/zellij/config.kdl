@@ -4,6 +4,7 @@ ui {
         hide_session_name false
     }
 }
+// default_cwd "~/workspace"
 simplified_ui false
 
 theme "catppuccin-mocha"
@@ -13,3 +14,28 @@ mouse_mode true
 copy_command "xclip -selection clipboard" 
 copy_clipboard "primary"
 copy_on_select true
+
+keybinds {
+    normal {
+        bind "F2" { SwitchToMode "RenameTab"; TabNameInput 0; }
+    }
+    pane {
+        unbind  "h" "j" "k" "l" "Left" "Right" "Down" "Up"
+    }
+    shared {
+        bind "Alt j" { MoveFocusOrTab "Left"; }
+        bind "Alt l" { MoveFocusOrTab "Right"; }
+        bind "Alt k" { MoveFocus "Down"; }
+        bind "Alt i" { MoveFocus "Up"; }
+    }
+    shared_except "locked" {
+        unbind "Alt h" "Alt Left" "Alt Right" "Alt Down" "Alt Up"
+    }
+    shared_except "locked" {
+        // unbind "Ctrl t"
+        // bind "Alt t" { SwitchToMode "Tab"; }
+    }
+    shared_except "resize" "locked" {
+        unbind "Ctrl n" // Remove resize tab
+    }
+}
