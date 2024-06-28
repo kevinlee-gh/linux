@@ -1,6 +1,14 @@
 layout {
-    pane size=1 borderless=true {
-        plugin location="tab-bar"
+    pane size=1 split_direction="vertical" {
+        pane size="75%" borderless=true {
+            plugin location="tab-bar"
+        }
+        pane size="15%" borderless=true {
+            plugin location="file:~/.config/zellij/plugins/datetime" {
+                timezone1 "UTC/7"
+                enable_right_click false
+            }
+        }
     }
     pane 
     pane size=2 borderless=true {
