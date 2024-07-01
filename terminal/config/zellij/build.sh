@@ -1,12 +1,15 @@
+# REF: https://github.com/zellij-org/zellij/blob/main/CONTRIBUTING.md
+
 FILE_DIR=$(dirname `realpath $0`)
 
 ROOT_DIR=$PWD
-cd $FILE_DIR/src/default-plugins/status-bar
 
-if [ -d "$ROOT_DIR/tmp/zellij-status-bar" ]; then 
-    rm -rf "$ROOT_DIR/tmp/zellij-status-bar"
+# Zellij
+cd $FILE_DIR/src
+
+if [ -d "$FILE_DIR/src/target" ]; then 
+    rm -rf "$FILE_DIR/src/target"
 fi
-cargo build --release --target-dir $ROOT_DIR/tmp/zellij-status-bar
+cargo xtask build --release
 
-cp $ROOT_DIR/tmp/zellij-status-bar/wasm32-wasi/release/status-bar.wasm $ROOT_DIR/tmp/
-# cd -
+cp $FILE_DIR/src/zellij-utils/assets/plugins/status-bar.wasm $FILE_DIR/plugins/custom-status-bar.wasm
