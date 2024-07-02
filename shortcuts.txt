@@ -1,0 +1,3 @@
+# os
+ctrl + space : switch input keyboard source
+alt + tab : switch applications
