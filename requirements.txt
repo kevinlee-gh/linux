@@ -12,6 +12,7 @@ fio
 bash-completion
 guake # dropdown terminal
 zellij # workspace
+starship
 
 # Code
 code # prefer snap version

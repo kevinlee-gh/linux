@@ -3,13 +3,11 @@ FILE_DIR=$(dirname `realpath $0`)
 # Create personal dirs
 
 ## ~/.local
-if [ ! -d ~/.local ]; then
-    echo Create '~/.local' dir
-    mkdir ~/.local
-    cd ~/.local
-    mkdir bash-completion bin lib share
-    cd -
-fi
+echo Create '~/.local' dir
+mkdir -p ~/.local
+cd ~/.local
+mkdir -p bash-completion bin lib share
+cd -
 
 ## ~/workspace
 if [ ! -d ~/workspace ]; then
