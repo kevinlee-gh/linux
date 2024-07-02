@@ -9,6 +9,8 @@ cd ~/.local
 mkdir -p bash-completion bin lib share
 cd -
 
+mkdir -p ~/.local/bash-completion/completions/
+
 ## ~/workspace
 if [ ! -d ~/workspace ]; then
     echo Create '~/workspace' dir

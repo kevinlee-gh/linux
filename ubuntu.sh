@@ -1,5 +1,6 @@
+sudo add-apt-repository universe
 sudo apt update && sudo apt upgrade
-sudo apt install git vim golang-go snapd curl fio bash-completion guake gnome-terminal cargo
+sudo apt install git vim golang-go snapd curl fio bash-completion guake gnome-terminal cargo gnome-tweaks
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
