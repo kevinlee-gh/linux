@@ -20,6 +20,7 @@ code # prefer snap version
 # DevOps 
 docker
 helm
+k9s
 kubectl
 
 # Gnome extensions
