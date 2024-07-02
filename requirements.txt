@@ -21,3 +21,6 @@ code # prefer snap version
 docker
 helm
 kubectl
+
+# Gnome extensions
+aatws # advanced alt-tab window switcher
