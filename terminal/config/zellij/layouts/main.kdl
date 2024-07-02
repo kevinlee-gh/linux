@@ -12,7 +12,10 @@ layout {
     }
     pane 
     pane size=2 borderless=true {
-        plugin location="status-bar"
+        plugin {
+            location "status-bar"
+            // location "file:~/.config/zellij/plugins/status-bar"
+        } 
     }
 
 }
