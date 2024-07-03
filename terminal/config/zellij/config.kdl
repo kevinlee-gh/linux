@@ -47,6 +47,7 @@ keybinds clear-defaults=true {
     }
     pane {
         bind "Alt P" { SwitchToMode "Normal"; }
+        bind "F2" { SwitchToMode "RenamePane"; PaneNameInput 0;}
         bind "r" { SwitchToMode "Resize"; }
         bind "m" { SwitchToMode "Move"; }
     }
