@@ -33,7 +33,7 @@ dotenv() {(
         fi
 
         # Get envs from env file
-        if [[ ! $i -ef ~/.local/.env ]] ; then
+        if [[ -z "$HIDE_ENVS" ]] ; then
             echo Get env from $i:
             envNoCommentAndBlank | grep -P "$validRegex" | sed 's/^/  * /'
         fi
@@ -42,7 +42,7 @@ dotenv() {(
 )}
 
 # Load envs
-dotenv ~/.local/.env
+HIDE_ENVS=1 dotenv ~/.local/envs/.env*
 
 # git comment prefix
 alias branch="git branch --show-current"
