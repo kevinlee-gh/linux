@@ -42,7 +42,7 @@ dotenv() {
 }
 
 # Load envs
-dotenv ~/.local/envs/.env*
+HIDE_ENVS=1 dotenv ~/.local/envs/.env*
 
 # git comment prefix
 alias branch="git branch --show-current"
