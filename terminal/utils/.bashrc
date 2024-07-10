@@ -18,26 +18,31 @@ dotenv() {
 
     if [ "$#" == 0 ]; then echo "Missing env files"; fi
 
-    envNoCommentAndBlank() {
+    linesExceptCommentOrBlankLines() {
         cat ${i} | grep -v "^#" | grep -v "^[[:space:]]*$"
     }
     validRegex="^([\w]+)=(([^# \"\']*)|\"(.*)\"|\'(.*)\')( *)$"
 
     for i in $@; do
         # Check valid of env file
-        if [ $( envNoCommentAndBlank | grep -vP "$validRegex" | wc -l) != "0" ]; then
+        if [ $( linesExceptCommentOrBlankLines | grep -vP "$validRegex" | wc -l) != "0" ]; then
             # If not include '='
             echo "Invalid syntax in '${i}':"
-            envNoCommentAndBlank | grep -vP "$validRegex" | sed 's/^/  * /'
+            linesExceptCommentOrBlankLines | grep -vP "$validRegex" | sed 's/^/  * /'
+            continue
+        elif [ $( linesExceptCommentOrBlankLines | grep -P "$validRegex" | wc -l) == "0" ]; then
+            echo "Blank env file - '${i}'"
             continue
         fi
 
         # Get envs from env file
         if [[ -z "$HIDE_ENVS" ]] ; then
             echo Get env from $i:
-            envNoCommentAndBlank | grep -P "$validRegex" | sed 's/^/  * /'
+            linesExceptCommentOrBlankLines | grep -P "$validRegex" | sed 's/^/  * /'
         fi
-        eval "export $( envNoCommentAndBlank | grep -P "$validRegex" )"
+        while read line; do 
+            export "$line"
+        done < <(linesExceptCommentOrBlankLines)
     done
 }
 
