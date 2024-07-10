@@ -11,7 +11,7 @@ done
 
 # Custom functions
 
-dotenv() {(
+dotenv() {
     ############################
     # Load env from .env files #
     ############################
@@ -39,10 +39,10 @@ dotenv() {(
         fi
         eval "export $( envNoCommentAndBlank | grep -P "$validRegex" )"
     done
-)}
+}
 
 # Load envs
-HIDE_ENVS=1 dotenv ~/.local/envs/.env*
+dotenv ~/.local/envs/.env*
 
 # git comment prefix
 alias branch="git branch --show-current"

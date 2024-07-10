@@ -3,6 +3,7 @@ FILE_DIR=$(dirname `realpath $0`)
 echo "Setup terminal emulator:"
 
 # Add env file
+if [ -d ~/.local/envs ]; then rm -rf ~/.local/envs; fi
 ln -sf ${FILE_DIR}/utils/envs ~/.local/envs
 
 # Get personal bins
