@@ -49,6 +49,9 @@ dotenv() {
 # Load envs
 HIDE_ENVS=1 dotenv ~/.local/envs/.env*
 
+# docker-compose
+alias docker-compose="docker compose"
+
 # git comment prefix
 alias branch="git branch --show-current"
 alias feat='echo "feat($(branch))"'
