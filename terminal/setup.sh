@@ -17,8 +17,8 @@ ln -s ${FILE_DIR}/utils/.bash_aliases ~/.bash_aliases
 echo "  + Terminal emulator configs"
 # Add configs to ../home/.config dir
 for CONFIG_DIRNAME in $(ls ${FILE_DIR}/config); do
-    SOURCE_DIR=${FILE_DIR}/config/${CONFIG_DIRNAME}
-    DESTINATION_DIR=${FILE_DIR}/../home/.config/${CONFIG_DIRNAME}
+    SOURCE_DIR=../../terminal/config/${CONFIG_DIRNAME}
+    DESTINATION_DIR=${ROOT_DIR}/home/.config/${CONFIG_DIRNAME}
     if [ -L ${DESTINATION_DIR} ]; then 
         rm ${DESTINATION_DIR}
     fi
