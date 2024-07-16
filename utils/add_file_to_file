@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ "$#" != 3 ]; then 
+    echo Error: Something went wrongs. Need exactly 3 arguments for source + destination files and title
+    exit 1
+fi
+
+SOURCE_FILE=$1
+DEST_FILE=$2
+TITLE=$3
+
+if [ ! -f "$SOURCE_FILE" ]; then
+    echo "Source file '$SOURCE_FILE' does not exist. "
+    exit 1
+fi
+if [ ! -f "$DEST_FILE" ]; then
+    echo "Destination file '$DEST_FILE' does not exist. "
+    exit 1
+fi
+### Remove old
+sed -i "/^# >>> ${TITLE}$/,/^# <<< ${TITLE}$/d" ~/.bashrc
+
+echo "" >> $DEST_FILE
+echo "# >>> $TITLE" >> $DEST_FILE
+cat "${SOURCE_FILE}" >> $DEST_FILE
+echo "" >> $DEST_FILE
+echo "# <<< $TITLE" >> $DEST_FILE

@@ -1,19 +1,14 @@
 FILE_DIR=$(dirname `realpath $0`)
+ROOT_DIR="$FILE_DIR/.."
 
 echo "Setup terminal:"
 # Get personal bashrc
 echo "  + '~/.bashrc':"
 
 echo "    * Personal Customizations"
-### remove old personal bashrc
-sed -i '/^# >>> PERSONAL CUSTOMIZATIONS$/,/^# <<< PERSONAL CUSTOMIZATIONS$/d' ~/.bashrc
 
 ### add new personal bashrc
-echo "" >> ~/.bashrc
-echo "# >>> PERSONAL CUSTOMIZATIONS" >> ~/.bashrc
-cat "${FILE_DIR}/utils/.bashrc" >> ~/.bashrc
-echo "" >> ~/.bashrc
-echo "# <<< PERSONAL CUSTOMIZATIONS" >> ~/.bashrc
+${ROOT_DIR}/utils/add_file_to_file ${FILE_DIR}/utils/.bashrc ~/.bashrc "PERSONAL CUSTOMIZATIONS"
 
 echo "    * ~/.bash_aliases"
 if [ -f ~/.bash_aliases ]; then rm -rf ~/.bash_aliases; fi
