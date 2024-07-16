@@ -1,7 +1,8 @@
 FILE_DIR=$(dirname `realpath $0`)
 
+echo "Setup '~':"
 # Add config to ~/.config
-echo "Add '~/.config':"
+echo "  + Add '~/.config':"
 for CONFIG_DIRNAME in $(ls ${FILE_DIR}/.config); do
     echo "  + ${CONFIG_DIRNAME}"
 
