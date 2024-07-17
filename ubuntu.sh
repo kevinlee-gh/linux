@@ -7,3 +7,5 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 cargo install --locked zellij
 
 ssh-keygen -t rsa -C "kienlt"
+
+sudo snap install code --classic
