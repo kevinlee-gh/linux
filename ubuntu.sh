@@ -1,11 +1,19 @@
+ROOT_DIR=$(dirname `realpath $0`)
+
+# Install base packages
 sudo add-apt-repository universe
-sudo apt update && sudo apt upgrade
-sudo apt install git vim golang-go snapd curl fio bash-completion guake gnome-terminal cargo gnome-tweaks xclip
+sudo apt update -y && sudo apt upgrade -y
+sudo apt-get install -y \
+    curl wget git vim golang-go snapd gnome-tweaks xclip bash-completion \
+    fio guake gnome-terminal cargo
 
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-cargo install --locked zellij
-
+# ssh-key
 ssh-keygen -t rsa -C "kienlt"
 
-sudo snap install code --classic
+# Init Home - Create personal dirs
+${FILE_DIR}/home/init.sh
+
+# Install packages
+for package in $(ls ${ROOT_DIR}/packages/ubuntu); do
+    bash ${ROOT_DIR}/packages/ubuntu/${package}
+done
