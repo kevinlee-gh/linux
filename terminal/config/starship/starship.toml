@@ -1,1 +1,10 @@
-add_newline=false
+add_newline=true
+
+[conda]
+ignore_base = false
+
+[kubernetes]
+disabled = false
+
+[python]
+disabled = true
