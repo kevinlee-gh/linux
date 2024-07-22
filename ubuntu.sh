@@ -5,7 +5,8 @@ sudo add-apt-repository universe
 sudo apt update -y && sudo apt upgrade -y
 sudo apt-get install -y \
     curl wget git vim golang-go snapd gnome-tweaks xclip bash-completion \
-    fio guake gnome-terminal cargo
+    gnome-terminal gnome-shell-extensions \
+    fio guake cargo
 
 # ssh-key
 ssh-keygen -t rsa -C "kienlt"
