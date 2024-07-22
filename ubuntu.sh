@@ -11,7 +11,7 @@ sudo apt-get install -y \
 ssh-keygen -t rsa -C "kienlt"
 
 # Init Home - Create personal dirs
-${FILE_DIR}/home/init.sh
+${ROOT_DIR}/home/init.sh
 
 # Install packages
 for package in $(ls ${ROOT_DIR}/packages/ubuntu); do
