@@ -9,7 +9,7 @@ sudo apt-get install -y \
     build-essential procps file \
     curl wget git vim xclip bash-completion \
     gnome-tweaks gnome-terminal gnome-shell-extensions \
-    fio
+    fio pwgen
 
 ## installer tools
 sudo apt-get install -y \
