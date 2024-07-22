@@ -1,5 +1,2 @@
 #!/bin/bash
-curl https://sh.rustup.rs -sSf | sh
-rustup update
-
-cargo install --locked zellij
+sudo snap install zellij
