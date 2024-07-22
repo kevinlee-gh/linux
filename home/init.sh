@@ -22,6 +22,10 @@ echo "    * 'envs'"
 if [ -d ~/.local/envs ]; then rm -rf ~/.local/envs; fi
 ln -sf ${FILE_DIR}/.local/envs ~/.local/envs
 
+echo "  + '~/.fonts'"
+if [ -d ~/.fonts ]; then rm -rf ~/.fonts; fi
+ln -sf ${FILE_DIR}/.fonts ~/.fonts
+
 ## ~/workspace
 if [ ! -d ~/workspace ]; then
     echo "  + Create'~/workspace'"
