@@ -50,6 +50,7 @@ keybinds clear-defaults=true {
         bind "F2" { SwitchToMode "RenamePane"; PaneNameInput 0;}
         bind "r" { SwitchToMode "Resize"; }
         bind "m" { SwitchToMode "Move"; }
+        bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
     tab {
         bind "Alt T" { SwitchToMode "Normal"; }
