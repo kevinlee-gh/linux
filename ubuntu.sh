@@ -7,7 +7,7 @@ sudo apt update -y && sudo apt upgrade -y
 ## base tools
 sudo apt-get install -y \
     build-essential procps file \
-    curl wget git vim xclip bash-completion \
+    curl wget git vim xclip bash-completion tree \
     gnome-tweaks gnome-terminal gnome-shell-extensions \
     fio pwgen
 
