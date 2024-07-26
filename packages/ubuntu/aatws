@@ -1,1 +1,2 @@
-gnome-extensions-cli install -y 4412
+#!/bin/bash
+sudo gnome-extensions-cli install 4412
