@@ -1,4 +1,4 @@
 #!/bin/bash
-sudo add-apt-repository ppa:solaar-unifying/stable
+sudo add-apt-repository ppa:solaar-unifying/stable -y
 sudo apt-get update -y
 sudo apt-get install -y solaar
