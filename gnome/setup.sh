@@ -1,5 +1,6 @@
 FILE_DIR=$(dirname `realpath $0`)
 
+# sudo sed -i 's/^#.*WaylandEnable=.*/WaylandEnable=false/' /etc/gdm3/custom.conf
 gsettings set org.gnome.desktop.background picture-uri file://${FILE_DIR}/image/background.jpg
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
 
