@@ -1,0 +1,2 @@
+#!/bin/bash
+gnome-shell-extension-installer --restart-shell 4412

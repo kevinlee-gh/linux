@@ -15,8 +15,11 @@ sudo apt-get install -y \
     golang-go snapd 
 
 ( # gnome
-    sudo apt-get install -y gnome-tweaks gnome-terminal gnome-shell-extensions
-    sudo apt-get install -y chrome-gnome-shell
+    sudo apt-get install -y gnome-tweaks gnome-terminal gnome-shell-extensions gnome-shell-extension-manager
+    
+    wget -O $ROOT_DIR/tmp/gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
+    chmod +x $ROOT_DIR/tmp/gnome-shell-extension-installer
+    mv $ROOT_DIR/tmp/gnome-shell-extension-installer ~/.local/bin/
 )
 
 ( # brew
@@ -27,8 +30,7 @@ sudo apt-get install -y \
     ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin
 )
 
-# ssh-key
-(
+( # ssh-key
     TYPE=rsa
     ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
 )
