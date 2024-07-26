@@ -3,6 +3,7 @@ FILE_DIR=$(dirname `realpath $0`)
 # sudo sed -i 's/^#.*WaylandEnable=.*/WaylandEnable=false/' /etc/gdm3/custom.conf
 gsettings set org.gnome.desktop.background picture-uri file://${FILE_DIR}/image/background.jpg
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
+gsettings set org.gnome.desktop.interface monospace-font-name '0xProto Nerd Font Mono 11'
 
 (   # System Keybindings
     gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
