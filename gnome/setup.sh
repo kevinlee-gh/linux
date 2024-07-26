@@ -5,8 +5,8 @@ gsettings set org.gnome.desktop.background picture-uri file://${FILE_DIR}/image/
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
 
 (   # System Keybindings
-    gsettings get org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
-    gsettings get org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
+    gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
 )
 
 ( # custom Keybindings
