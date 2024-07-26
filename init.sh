@@ -10,4 +10,4 @@ ${ROOT_DIR}/terminal/setup.sh
 ${ROOT_DIR}/home/setup.sh
 
 # Gnome config
-gsettings set org.gnome.desktop.background picture-uri file://${ROOT_DIR}/utils/image/background.jpg
+${ROOT_DIR}/gnome/setup.sh
