@@ -2,4 +2,7 @@
 sudo add-apt-repository ppa:solaar-unifying/stable -y
 sudo apt-get update -y
 sudo apt-get install -y solaar
-sudo gnome-extensions-cli install 6162
+# sudo gnome-extensions-cli install 6162
+
+if [ -f /etc/udev/rules.d/60-solaar.rules ]; then rm /etc/udev/rules.d/60-solaar.rules; fi
+sudo cp /lib/udev/rules.d/60-solaar.rules /etc/udev/rules.d/60-solaar.rules
