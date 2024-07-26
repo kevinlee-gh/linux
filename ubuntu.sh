@@ -16,7 +16,7 @@ sudo apt-get install -y \
 
 ( # gnome
     sudo apt-get install -y gnome-tweaks gnome-terminal gnome-shell-extensions
-    sudo apt-get install -y gnome-browser-connector
+    sudo apt-get install -y chrome-gnome-shell
 )
 
 ( # brew
