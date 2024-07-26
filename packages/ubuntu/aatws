@@ -1,2 +1,1 @@
-#!/bin/bash
-gnome-shell-extension-installer --restart-shell 4412
+gnome-extensions-cli install -y 4412

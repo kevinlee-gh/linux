@@ -8,7 +8,7 @@ sudo apt update -y && sudo apt upgrade -y
 sudo apt-get install -y \
     build-essential procps file \
     curl wget git vim xclip bash-completion tree \
-    fio pwgen htop
+    fio pwgen htop python3-pip
 
 ## installer tools
 sudo apt-get install -y \
@@ -16,10 +16,7 @@ sudo apt-get install -y \
 
 ( # gnome
     sudo apt-get install -y gnome-tweaks gnome-terminal gnome-shell-extensions gnome-shell-extension-manager
-    
-    wget -O $ROOT_DIR/tmp/gnome-shell-extension-installer "https://github.com/brunelli/gnome-shell-extension-installer/raw/master/gnome-shell-extension-installer"
-    chmod +x $ROOT_DIR/tmp/gnome-shell-extension-installer
-    mv $ROOT_DIR/tmp/gnome-shell-extension-installer ~/.local/bin/
+    sudo pip install --upgrade gnome-extensions-cli
 )
 
 ( # brew
