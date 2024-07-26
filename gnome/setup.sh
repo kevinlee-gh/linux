@@ -4,7 +4,12 @@ FILE_DIR=$(dirname `realpath $0`)
 gsettings set org.gnome.desktop.background picture-uri file://${FILE_DIR}/image/background.jpg
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
 
-( # Keybindings
+(   # System Keybindings
+    gsettings get org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
+    gsettings get org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
+)
+
+( # custom Keybindings
     GNOME_SCHEMA="org.gnome.settings-daemon.plugins.media-keys"
     GNOME_KEY="custom-keybindings"
 
