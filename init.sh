@@ -1,10 +1,13 @@
-FILE_DIR=$(dirname `realpath $0`)
+ROOT_DIR=$(dirname `realpath $0`)
 
 # Create personal dirs
-${FILE_DIR}/home/init.sh
+${ROOT_DIR}/home/init.sh
 
 # For terminal emulator
-${FILE_DIR}/terminal/setup.sh
+${ROOT_DIR}/terminal/setup.sh
 
 # Setup home
-${FILE_DIR}/home/setup.sh
+${ROOT_DIR}/home/setup.sh
+
+# Gnome config
+gsettings set org.gnome.desktop.background picture-uri file://${ROOT_DIR}/utils/image/background.jpg
