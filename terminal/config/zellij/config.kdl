@@ -47,9 +47,9 @@ keybinds clear-defaults=true {
     }
     pane {
         bind "Alt P" { SwitchToMode "Normal"; }
+        bind "Alt R" { SwitchToMode "Resize"; }
+        bind "Alt M" { SwitchToMode "Move"; }
         bind "F2" { SwitchToMode "RenamePane"; PaneNameInput 0;}
-        bind "r" { SwitchToMode "Resize"; }
-        bind "m" { SwitchToMode "Move"; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
     tab {
@@ -73,6 +73,7 @@ keybinds clear-defaults=true {
     }
     
     resize {
+        bind "Alt R" { SwitchToMode "Normal"; }
         bind "Left" { Resize "Increase Left"; }
         bind "Down" { Resize "Increase Down"; }
         bind "Up" { Resize "Increase Up"; }
