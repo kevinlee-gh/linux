@@ -6,7 +6,7 @@ sudo apt update -y && sudo apt upgrade -y
 
 ## base tools
 sudo apt-get install -y \
-    build-essential procps file \
+    build-essential procps file screenfetch \
     curl wget git vim xclip bash-completion tree \
     fio pwgen htop python3-pip
 
