@@ -1,12 +1,12 @@
 #!/bin/bash
-sudo apt-get update -y
-sudo apt-get install -y apt-transport-https ca-certificates gnupg curl
+sudo apt-get update -qq
+sudo apt-get install -qqy apt-transport-https ca-certificates gnupg curl
 
 if [ -f /usr/share/keyrings/cloud.google.gpg ]; then sudo rm /usr/share/keyrings/cloud.google.gpg; fi
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
 
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee /etc/apt/sources.list.d/google-cloud-sdk.list
-sudo apt-get update -y && sudo apt-get install -y google-cloud-cli
+sudo apt-get update -qq && sudo apt-get install -qqy google-cloud-cli
 
 ln -sf /usr/lib/google-cloud-sdk/completion.bash.inc ~/.local/bash-completion/completions/gcloud.bash.inc
 

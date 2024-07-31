@@ -1,4 +1,4 @@
 #!/bin/bash
-brew install just
+sudo brew install just
 
 just --completions bash > ~/.local/bash-completion/completions/just.bash.inc

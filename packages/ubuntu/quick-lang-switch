@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo gnome-extensions-cli install 4559
+gnome-extensions-cli install 4559

@@ -1,2 +1,2 @@
 #!/bin/bash
-brew install go-task
+sudo brew install go-task
