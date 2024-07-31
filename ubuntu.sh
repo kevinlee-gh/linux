@@ -20,11 +20,11 @@ sudo apt-get install -qqy \
 )
 
 ( # brew
-    if [ -d /usr/lib/homebrew ]; then rm -rf /usr/lib/homebrew; fi
+    if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
 
-    mkdir -p /usr/lib/homebrew
-    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C /usr/lib/homebrew
-    ln -sf /usr/lib/homebrew/bin/brew /usr/bin
+    mkdir -p ~/.local/lib/homebrew
+    curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.local/lib/homebrew
+    ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin
 )
 
 ( # ssh-key
