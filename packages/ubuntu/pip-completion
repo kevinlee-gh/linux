@@ -1,0 +1,2 @@
+#!/bin/bash
+pip completion --bash > ~/.local/bash-completion/completions/pip.bash.inc
