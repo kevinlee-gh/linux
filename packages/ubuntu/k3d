@@ -1,0 +1,4 @@
+#!/bin/bash
+brew install k3d
+
+k3d completion bash > ~/.local/bash-completion/completions/k3d.bash.inc
