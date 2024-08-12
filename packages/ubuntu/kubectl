@@ -1,4 +1,4 @@
 #!/bin/bash
 sudo snap install kubectl --classic
 
-kubectl completion bash > ~/.local/bash-completion/completions/kubectl.bash.inc
+kubectl completion bash | tee ~/.local/bash-completion/completions/kubectl.bash.inc > /dev/null
