@@ -11,12 +11,12 @@ done
 
 # Custom functions
 
-dotenv() {
+function dotenv() {
     ############################
     # Load env from .env files #
     ############################
 
-    if [ "$#" == 0 ]; then echo "Missing env files"; fi
+    if [ "$#" == 0 ]; then echo "ERROR: Missing env files"; exit 1; fi
 
     linesExceptCommentOrBlankLines() {
         cat ${i} | grep -v "^#" | grep -v "^[[:space:]]*$"
@@ -27,11 +27,11 @@ dotenv() {
         # Check valid of env file
         if [ $( linesExceptCommentOrBlankLines | grep -vP "$validRegex" | wc -l) != "0" ]; then
             # If not include '='
-            echo "Invalid syntax in '${i}':"
+            echo "ERROR: Invalid syntax in '${i}':"
             linesExceptCommentOrBlankLines | grep -vP "$validRegex" | sed 's/^/  * /'
             continue
         elif [ $( linesExceptCommentOrBlankLines | grep -P "$validRegex" | wc -l) == "0" ]; then
-            echo "Blank env file - '${i}'"
+            echo "WARN: Blank env file - '${i}'"
             continue
         fi
 
