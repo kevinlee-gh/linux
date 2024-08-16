@@ -1,2 +1,4 @@
 #!/bin/bash
 brew install fluxcd/tap/flux
+
+flux completion bash | tee ~/.local/bash-completion/completions/flux.bash.inc > /dev/null
