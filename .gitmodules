@@ -1,0 +1,3 @@
+[submodule "home/.config/nvim"]
+	path = home/.config/nvim
+	url = git@github.com:KienLe-git/nvim-lazzy.git
