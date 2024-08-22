@@ -1,3 +1,4 @@
+#!/bin/bash
 FILE_DIR=$(dirname `realpath $0`)
 
 # sudo sed -i 's/^#.*WaylandEnable=.*/WaylandEnable=false/' /etc/gdm3/custom.conf

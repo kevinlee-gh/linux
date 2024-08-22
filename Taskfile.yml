@@ -63,4 +63,4 @@ tasks:
       - sh: "[[ -n '$(ls -A /usr/share/xsessions/)' ]]"
         msg: "GUI's not found in this device"
     cmds:
-    - ${ROOT_DIR}/gnome/setup.sh
+      - ${ROOT_DIR}/gnome/setup.sh
