@@ -1,2 +1,5 @@
 #!/bin/bash
 brew install go-task
+
+curl -o ~/.local/bash-completion/completions/task.bash.inc \
+    https://raw.githubusercontent.com/go-task/task/main/completion/bash/task.bash 
