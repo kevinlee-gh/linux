@@ -47,3 +47,20 @@ tasks:
       IS_SUDOER: '{{ .IS_SUDOER }}'
     cmds: 
       - echo hihi $DEVICE_TYPE $DISTRO_ID $IS_SUDOER
+      # TODO: PROMPT Confirm
+      - task: __gnome__
+        vars:
+          DEVICE_TYPE: 
+            ref: .DEVICE_TYPE
+
+  __gnome__: 
+    requires:
+      vars:
+        - DEVICE_TYPE
+    preconditions: 
+      - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' ]]"
+        msg: "Gnome Setup is not supported for '{{ .DEVICE_TYPE }}'"
+      - sh: "[[ -n '$(ls -A /usr/share/xsessions/)' ]]"
+        msg: "GUI's not found in this device"
+    cmds:
+    - ${ROOT_DIR}/gnome/setup.sh
