@@ -1,5 +1,4 @@
 FILE_DIR=$(dirname `realpath $0`)
-ROOT_DIR=$(git rev-parse --show-toplevel)
 
 echo "Setup terminal:"
 # Get personal bashrc

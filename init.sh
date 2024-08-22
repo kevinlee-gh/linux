@@ -1,4 +1,4 @@
-ROOT_DIR=$(dirname $(realpath $0))
+export ROOT_DIR=$(dirname $(realpath $0))
 
 if [[ -z "$1" ]]; then
   echo 'Missing first arg for `DEVICE_TYPE`'
@@ -7,7 +7,7 @@ elif [[ "$1" != "PC" ]] && [[ "$1" != "SERVER" ]]; then
   echo "First arg - \`DEVICE_TYPE\` must be \`PC\` or \`SERVER\`, not \`${1}\`"
   exit 1
 else 
-  DEVICE_TYPE=${1}
+  export DEVICE_TYPE=${1}
 fi
 
 # Create personal dirs
@@ -20,4 +20,6 @@ ${ROOT_DIR}/terminal/setup.sh
 ${ROOT_DIR}/home/setup.sh
 
 # Gnome config
-${ROOT_DIR}/gnome/setup.sh
+if [[ "$DEVICE_TYPE" == "PC" ]]; then
+  ${ROOT_DIR}/gnome/setup.sh
+fi

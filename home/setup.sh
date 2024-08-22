@@ -20,4 +20,6 @@ for CONFIG_DIRNAME in $(ls ${FILE_DIR}/.config); do
 done
 
 # Activate guake config
-guake --restore-preferences ~/.config/guake/custom.cfg
+if [[ "${DEVICE_TYPE}" == "PC" ]]; then
+    guake --restore-preferences ~/.config/guake/custom.cfg
+fi
