@@ -1,22 +1,4 @@
-export ROOT_DIR=$(dirname $(realpath $0))
-
-DISTRO_ID=$(lsb_release --id | sed 's/Distributor ID:\s//')
-if [[ ${DISTRO_ID} != "Ubuntu" ]]; then
-  echo "Not supported for \`${DISTRO_ID}\`"
-  exit 1
-fi
-
-if [[ -z "$1" ]]; then
-  echo 'Missing first arg for `DEVICE_TYPE`'
-  exit 1
-elif [[ "$1" != "PC" ]] && [[ "$1" != "SERVER" ]]; then
-  echo "First arg - \`DEVICE_TYPE\` must be \`PC\` or \`SERVER\`, not \`${1}\`"
-  exit 1
-else 
-  export DEVICE_TYPE=${1}
-fi
-
-exit 1
+#!/bin/bash
 
 # Create personal dirs
 ${ROOT_DIR}/home/init.sh

@@ -1,7 +1,49 @@
 version: '3'
 
-tasks: 
-  hello:
-    cmds: 
-      - echo "Hello World"
+env: 
+  ROOT_DIR: '{{ .TASKFILE_DIR }}'
+
+tasks:
+  setup:
+    desc: Setup working env for device. 
+    dir: '{{ .TASKFILE_DIR }}'
+    vars: 
+      DISTRO_ID: 
+        sh: lsb_release --id | sed 's/Distributor ID:\s//'
+      DEVICE_TYPE: 
+        sh: |
+          if [[ -n '{{ .DEVICE_TYPE}}' ]]; then 
+            echo {{ .DEVICE_TYPE }}
+          elif [[ -z "$(ls -A /usr/share/xsessions/)" ]]; then
+            echo SERVER
+          else
+            echo PC
+          fi
+      IS_SUDOER:
+        sh: |
+          if [[ -n '{{ .IS_SUDOER }}' ]]; then 
+            echo {{ .IS_SUDOER }}
+          elif [[ -n $(groups | grep --only-matching sudo) ]]; then 
+            echo TRUE
+          else 
+            echo FALSE
+          fi
+    preconditions: 
+      # Validate `DEVICE_TYPE`
+      - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' || '{{ .DEVICE_TYPE }}' == 'SERVER' ]]"
+        msg: "'DEVICE_TYPE' must be 'PC' or 'SERVER', not '{{ .DEVICE_TYPE }}'"
+      
+      # Validate `DISTRO_ID`
+      - sh: "[[ '{{ .DISTRO_ID }}' == 'Ubuntu' ]]"
+        msg: "Not supported for '{{ .DISTRO_ID }}'"
+
+      # Validate `IS_SUDOER`
+      - sh: "[[ '{{ .IS_SUDOER }}' == 'TRUE' || '{{ .IS_SUDOER }}' == 'FALSE' ]]"
+        msg: "'IS_SUDOER' must be 'TRUE' or 'FALSE', not '{{ .IS_SUDOER }}'"
     
+    env: 
+      DEVICE_TYPE: '{{ .DEVICE_TYPE }}'
+      DISTRO_ID: '{{ .DISTRO_ID }}'
+      IS_SUDOER: '{{ .IS_SUDOER }}'
+    cmds: 
+      - echo hihi $DEVICE_TYPE $DISTRO_ID $IS_SUDOER
