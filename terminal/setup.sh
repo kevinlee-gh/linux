@@ -1,3 +1,4 @@
+#!/bin/bash
 FILE_DIR=$(dirname `realpath $0`)
 
 echo "Setup terminal:"
