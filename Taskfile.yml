@@ -9,7 +9,7 @@ tasks:
     dir: '{{ .TASKFILE_DIR }}'
     vars: 
       DISTRO_ID: 
-        sh: lsb_release --id | sed 's/Distributor ID:\s//'
+        sh: cat /etc/*-release | grep DISTRIB_ID | sed 's/^DISTRIB_ID=//'
       DEVICE_TYPE: 
         sh: |
           if [[ -n '{{ .DEVICE_TYPE}}' ]]; then 
@@ -63,4 +63,5 @@ tasks:
       - sh: "[[ -n '$(ls -A /usr/share/xsessions/)' ]]"
         msg: "GUI's not found in this device"
     cmds:
-      - ${ROOT_DIR}/gnome/setup.sh
+      - echo hihi
+      # - ${ROOT_DIR}/gnome/setup.sh
