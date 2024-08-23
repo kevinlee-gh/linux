@@ -1,0 +1,20 @@
+name: SERVER-UBUNTU-NON_SUDO
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-2004: 
+    runs-on: ubuntu-latest
+    container: "ubuntu:20.04"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create user nonroot and switch
+        run: |
+          useradd -md /home/nonroot nonroot
+          su nonroot
+      - name: Run setup
+        run: ./setup
