@@ -53,11 +53,11 @@ tasks:
             ${ROOT_DIR}/gnome/setup.sh
           fi
       - task: __home.init__
-      - task: __terminal__
-      - task: __home.setup__
-        vars:
-          DEVICE_TYPE:
-            ref: .DEVICE_TYPE
+      # - task: __terminal__
+      # - task: __home.setup__
+      #   vars:
+      #     DEVICE_TYPE:
+      #       ref: .DEVICE_TYPE
   __home.init__:
     desc: Init ~ dir
     dir: '{{ .TASKFILE_DIR }}'
