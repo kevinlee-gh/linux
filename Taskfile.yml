@@ -17,10 +17,10 @@ tasks:
         sh: |
           if [[ -n '{{ .DEVICE_TYPE}}' ]]; then 
             echo {{ .DEVICE_TYPE }}
-          elif [[ -z "$(ls -A /usr/share/xsessions/)" ]]; then
-            echo SERVER
-          else
+          elif [[ -d /usr/share/xsessions ]] && [[ -n "$(ls -A /usr/share/xsessions/)" ]]; then
             echo PC
+          else
+            echo SERVER
           fi
       IS_SUDOER:
         sh: |
