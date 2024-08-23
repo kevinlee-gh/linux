@@ -1,7 +1,9 @@
 version: '3'
 
 includes:
-  home: ./home  
+  home: 
+    taskfile: ./home
+    internal: true
 
 env: 
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
