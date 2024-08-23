@@ -7,9 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ubuntu-2004: &default
-    runs-on: ubuntu-latest
+  ubuntu-2004:
     container: "ubuntu:20.04"
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Create user nonroot and switch
@@ -19,5 +19,13 @@ jobs:
       - name: Run setup
         run: ./setup
   archlinux:
-    <<: *default
     container: archlinux:base
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create user nonroot and switch
+        run: |
+          useradd -md /home/nonroot -s /bin/bash nonroot
+          su nonroot
+      - name: Run setup
+        run: ./setup
