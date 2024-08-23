@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  ubuntu-2004: 
+  ubuntu-2004: &default
     runs-on: ubuntu-latest
     container: "ubuntu:20.04"
     steps:
@@ -18,3 +18,6 @@ jobs:
           su nonroot
       - name: Run setup
         run: ./setup
+  archlinux:
+    <<: *default
+    container: archlinux:base
