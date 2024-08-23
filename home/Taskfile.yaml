@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  init: 
+    desc: Init ~ dir
+    # requires:
+    #   vars:
+    #     - ROOT_DIR
+    vars:
+      BINS: 
+        sh: ls -A {{ .TASKFILE_DIR }}/.local/bin/
+    cmds: 
+      - mkdir -p ~/.local
+      # - "ln -sf {{ .TASKFILE_DIR }}/.local/bin/* ~/.local/bin"
+      - for:
+          - .local/envs
+          - .fonts
+        cmd: |
+          echo {{ .ITEM }}
+          # if [ -d {{ .ITEM }} ]; then rm -rf {{ .ITEM }}; fi
+          # ln -sf ${ .TASKFILE_DIR }/.fonts ~/.fonts
+      # - for:
+      #     var: BINS
+      #   cmd: hu
