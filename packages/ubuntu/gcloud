@@ -12,3 +12,5 @@ ln -sf /usr/lib/google-cloud-sdk/completion.bash.inc ~/.local/bash-completion/co
 
 gcloud auth login
 gcloud init
+
+sudo apt-get -y install google-cloud-sdk-gke-gcloud-auth-plugin
