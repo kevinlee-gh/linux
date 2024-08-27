@@ -6,12 +6,9 @@ tasks:
     # requires:
     #   vars:
     #     - ROOT_DIR
-    vars:
-      BINS: 
-        sh: ls -A {{ .TASKFILE_DIR }}/.local/bin/
     cmds: 
       - mkdir -p ~/.local
-      # - "ln -sf {{ .TASKFILE_DIR }}/.local/bin/* ~/.local/bin"
+      - mkdir -p ~/workspace
       - for:
           - .local/envs
           - .fonts
@@ -22,3 +19,14 @@ tasks:
       # - for:
       #     var: BINS
       #   cmd: hu
+  init&verify:
+    desc: task init and verify
+    deps:
+      - init
+    cmds: 
+      - echo DONE!
+  setup: 
+    desc: Setup ~ dir - bins and configs
+    vars:
+      BINS: 
+        sh: ls -A {{ .TASKFILE_DIR }}/.local/bin/

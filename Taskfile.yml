@@ -57,7 +57,7 @@ tasks:
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' ]] && [[ -n '$(ls -A /usr/share/xsessions/)' ]]; then
             ${ROOT_DIR}/gnome/setup.sh
           fi
-      - task: home:init
+      - task: home:init&verify
       
       # - task: __home.init__
       # - task: __terminal__
