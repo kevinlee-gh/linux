@@ -7,15 +7,16 @@ tasks:
     #   vars:
     #     - ROOT_DIR
     cmds: 
-      - mkdir -p ~/.local
-      - mkdir -p ~/workspace
-      - for:
-          - .local/envs
-          - .fonts
-        cmd: |
-          echo {{ .ITEM }}
-          # if [ -d {{ .ITEM }} ]; then rm -rf {{ .ITEM }}; fi
-          # ln -sf ${ .TASKFILE_DIR }/.fonts ~/.fonts
+      - mkdir -p ~/.local ~/workspace
+      - mkdir -p ~/.local/bin ~/.local/lib ~/.local/envs
+      - mkdir -p ~/.config ~/.fonts
+      # - for:
+      #     - .local/envs
+      #     - .fonts
+      #   cmd: |
+      #     echo {{ .ITEM }}
+      #     # if [ -d {{ .ITEM }} ]; then rm -rf {{ .ITEM }}; fi
+      #     # ln -sf ${ .TASKFILE_DIR }/.fonts ~/.fonts
       # - for:
       #     var: BINS
       #   cmd: hu
@@ -24,6 +25,9 @@ tasks:
     deps:
       - init
     cmds: 
+      - "[[ -d ~/.local ]] && [[ -d ~/workspace ]]"
+      - "[[ -d ~/.local/bin ]] && [[ -d ~/.local/lib ]] && [[ -d ~/.local/envs ]]"
+      - "[[ -d ~/.config ]] && [[ -d ~/.config ]]"
       - echo DONE!
   setup: 
     desc: Setup ~ dir - bins and configs

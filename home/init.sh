@@ -6,9 +6,6 @@ echo "Init '~' customizations:"
 
 echo "  + '~/.local':"
 
-# Create ~/.local
-echo "    * Create '~/.local' dir"
-mkdir -p ~/.local
 
 echo "    * 'bash-completion'"
 cd ~/.local
@@ -27,8 +24,3 @@ echo "  + '~/.fonts'"
 if [ -d ~/.fonts ]; then rm -rf ~/.fonts; fi
 ln -sf ${FILE_DIR}/.fonts ~/.fonts
 
-## ~/workspace
-if [ ! -d ~/workspace ]; then
-    echo "  + Create'~/workspace'"
-    mkdir ~/workspace
-fi
