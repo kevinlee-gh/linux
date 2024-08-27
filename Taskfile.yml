@@ -14,7 +14,7 @@ tasks:
     dir: '{{ .TASKFILE_DIR }}'
     vars: 
       DISTRO_ID: 
-        sh: cat /etc/*-release | grep DISTRIB_ID | sed 's/^DISTRIB_ID=//'
+        sh: cat /etc/*-release | grep -e "^NAME=" | sed 's:^NAME=::' | sed 's:"::g'
       DEVICE_TYPE: 
         sh: |
           if [[ -n '{{ .DEVICE_TYPE}}' ]]; then 
