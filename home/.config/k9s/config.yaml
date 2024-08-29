@@ -26,7 +26,7 @@ _defaultConfigs: &defaultConfigs
   # Logs configuration
   logger:
     # Defines the number of lines to return. Default 100
-    tail: 100
+    tail: 500
     # Defines the total number of log lines to allow in the view. Default 1000
     buffer: 5000
     # Represents how far to go back in the log timeline in seconds. Setting to -1 will tail logs. Default is -1.
