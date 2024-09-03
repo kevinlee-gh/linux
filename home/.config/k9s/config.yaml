@@ -1,5 +1,4 @@
 _defaultConfigs: &defaultConfigs
-  screenDumpDir: ~/.local/state/k9s/screen-dumps
   # Enable periodic refresh of resource browser windows. Default false
   liveViewAutoRefresh: false
   # Represents ui poll intervals. Default 2secs
