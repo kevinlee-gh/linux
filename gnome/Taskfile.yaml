@@ -1,0 +1,68 @@
+version: '3'
+
+tasks:
+  __prerequisites__:
+    desc: Install base packages for GUI
+    cmds: 
+      - sudo apt-get install -qqy gnome-tweaks gnome-terminal gnome-shell-extensions gnome-shell-extension-manager
+      - sudo pip install -qU gnome-extensions-cli
+  setup:
+    desc: GUI setup 
+    requires:
+      vars:
+        - IS_SUDOER
+        - DEVICE_TYPE
+    deps:
+      - __prerequisites__
+    preconditions: 
+      - sh: "[[ '{{ .DEVICE_TYPE }}' != 'PC' || -z '$(ls -A /usr/share/xsessions/)' ]]"
+        msg: "'DEVICE_TYPE' must be 'PC' and have Gnome in device"
+    cmds:
+      # Multi-tasking
+      - cmd: |
+          gsettings set org.gnome.app-switcher current-workspace-only false
+          gsettings set org.gnome.mutter workspaces-only-on-primary false
+      
+      # Appearances
+      - cmd: |
+          gsettings set org.gnome.desktop.background picture-uri file://{{ .TASKFILE_DIR }}/image/background.jpg
+          gsettings set org.gnome.desktop.peripherals.mouse natural-scroll true
+          gsettings set org.gnome.desktop.interface monospace-font-name '0xProto Nerd Font Mono 11'
+
+      # System Keybindings
+      - cmd: |
+          gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Primary>space']"
+          gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Primary><Shift>space']"
+
+      # Custom Keybindings:
+      - cmd: |
+          LS_KEYBINDINGS=(
+            'Guake Toggle:guake-toggle:F1'
+          )
+
+          GNOME_SCHEMA="org.gnome.settings-daemon.plugins.media-keys"
+          GNOME_KEY="custom-keybindings"
+
+          CONFIG_DOT="${GNOME_SCHEMA}.custom-keybinding"
+          CONFIG_PATH="/$(echo $GNOME_SCHEMA | sed 's/\./\//g')/${GNOME_KEY}"
+
+          ( # Define list custom shortcuts
+              custom_keybindings_list_value=""
+              
+              for i in "${!LS_KEYBINDINGS[@]}"; do 
+                  custom_keybindings_list_value="${custom_keybindings_list_value},'${CONFIG_PATH}/custom${i}/'"
+              done
+              custom_keybindings_list_value="[${custom_keybindings_list_value[@]:1}]"
+
+              gsettings set ${GNOME_SCHEMA} ${GNOME_KEY} "$custom_keybindings_list_value"
+          )
+          
+          ( # Set detail
+              for i in "${!LS_KEYBINDINGS[@]}"; do 
+                  IFS=':' read -ra keybinding <<< "${LS_KEYBINDINGS[$i]}"
+
+                  gsettings set "${CONFIG_DOT}:${CONFIG_PATH}/custom${i}/" name "${keybinding[0]}"
+                  gsettings set "${CONFIG_DOT}:${CONFIG_PATH}/custom${i}/" command "${keybinding[1]}"
+                  gsettings set "${CONFIG_DOT}:${CONFIG_PATH}/custom${i}/" binding "${keybinding[2]}"
+              done
+          )

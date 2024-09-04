@@ -14,7 +14,8 @@ sudo apt-get install -qqy \
 sudo apt-get install -qqy \
     golang-go snapd 
 
-( # gnome
+( # gnome 
+    # NOTE moved to gnome
     sudo apt-get install -qqy gnome-tweaks gnome-terminal gnome-shell-extensions gnome-shell-extension-manager
     sudo pip install -qU gnome-extensions-cli
 )
