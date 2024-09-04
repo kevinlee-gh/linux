@@ -1,6 +1,21 @@
-# personal_linux
+# KevinLee's Linux
 
-## .local dir
+## Supported Distro:
+
+- [x] Ubuntu
+- [ ] Arch
+
+## Components:
+
+### I. GUI - `gnome`
+
+### II. User home dir - `home`
+
+### III. Packages - `packages`
+
+### IV. CLI - `terminal`
+
+<!-- ## .local dir
 ```bash
 ~/.local/
 ├── bash-completion
@@ -11,4 +26,4 @@
 └── state
 
 7 directories, 0 files
-```
+``` -->
