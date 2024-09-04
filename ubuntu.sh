@@ -29,6 +29,7 @@ sudo apt-get install -qqy \
 )
 
 ( # ssh-key
+    # TODO move to home
     TYPE=rsa
     ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
 )
