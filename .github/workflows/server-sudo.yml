@@ -20,7 +20,7 @@ jobs:
         run: |
           useradd -md /home/admin -s /bin/bash admin
           usermod -aG sudo admin
-          su admin
+          su - admin
       - name: Check id and groups
         run: |
           echo "ID: $(whoami)"
