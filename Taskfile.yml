@@ -67,18 +67,18 @@ tasks:
             curl wget git vim xclip bash-completion \
             fio pwgen python3-pip
           sudo apt-get install -qqy golang-go snapd
+      # Init Home for config files
+      - task: home:init&verify
+      # ssh-key
+      - cmd: |
+          TYPE=rsa
+          ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
       # brew
       - cmd: |
           if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
           mkdir -p ~/.local/lib/homebrew
           curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.local/lib/homebrew
           ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin
-      # ssh-key
-      - cmd: |
-          TYPE=rsa
-          ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
-      # Init Home for config files
-      - task: home:init&verify
       # Install GUI packages
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]; then
