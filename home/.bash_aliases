@@ -1,7 +1,7 @@
 # git comment prefix
-alias branch="git branch --show-current"
-alias feat='echo "feat($(branch))"'
-alias fix='echo "fix($(branch))"'
+# alias branch="git branch --show-current"
+# alias feat='echo "feat($(branch))"'
+# alias fix='echo "fix($(branch))"'
 
 # Fast move
 alias cdw="cd ~/workspace"

@@ -10,6 +10,7 @@ tasks:
       - mkdir -p ~/workspace
       - mkdir -p ~/.local/bin ~/.local/lib ~/.local/envs ~/.local/bash-completion/completions
       - mkdir -p ~/.config ~/.fonts
+      - ln -s {{ .TASKFILE_DIR }}/.bash_aliases ~/.bash_aliases
       # - for:
       #     - .local/envs
       #     - .fonts
