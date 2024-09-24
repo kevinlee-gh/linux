@@ -65,7 +65,7 @@ tasks:
           sudo apt-get install -qqy \
             build-essential procps file screenfetch \
             curl wget git vim xclip bash-completion \
-            fio pwgen python3-pip \
+            fio pwgen python3-pip
           sudo apt-get install -qqy golang-go snapd
       # brew
       - cmd: |
