@@ -69,6 +69,7 @@ tasks:
           sudo apt-get install -qqy golang-go snapd
       # Init Home for config files
       - task: home:init&verify
+      - source ~/.bash_aliases
       # ssh-key
       - cmd: |
           TYPE=rsa
