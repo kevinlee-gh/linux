@@ -19,9 +19,11 @@ jobs:
       - name: Add groups
         run: usermod -aG sudo root
       - name: Switch to get groups
-        run: sudo su - root
+        run: sudo su root
       - name: check groups
-        run: groups
+        run: |
+          echo My groups: $(groups)
+          echo root groups: $(groups root)
       - name: Run init
         run: ./home/.local/bin/task init
   archlinux:
