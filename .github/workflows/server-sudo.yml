@@ -1,0 +1,24 @@
+name: SERVER-UBUNTU-SUDO
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ubuntu-2004:
+    container: "ubuntu:20.04"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run init
+        run: ./home/.local/bin/task init
+  archlinux:
+    container: archlinux:base
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run init
+        run: ./home/.local/bin/task init
