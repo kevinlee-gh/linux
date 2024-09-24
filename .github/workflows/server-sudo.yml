@@ -18,6 +18,8 @@ jobs:
           apt-get install -y sudo
           usermod -aG sudo root
           sudo su - root
+      - name: check groups
+        run: groups
       - name: Run init
         run: ./home/.local/bin/task init
   archlinux:
