@@ -21,6 +21,7 @@ jobs:
           useradd -md /home/admin -s /bin/bash admin
           usermod -aG sudo admin
           su - admin
+          echo "ID: $(whoami)"
       - name: Check id and groups
         run: |
           echo "ID: $(whoami)"
