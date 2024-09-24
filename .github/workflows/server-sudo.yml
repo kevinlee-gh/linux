@@ -16,14 +16,15 @@ jobs:
         run: |
           apt-get update
           apt-get install -y sudo
-      - name: Add groups
-        run: usermod -aG sudo root
-      - name: Switch to get groups
-        run: sudo su root
-      - name: check groups
+      - name: Create sudoer and switch
         run: |
-          echo My groups: $(groups)
-          echo root groups: $(groups root)
+          useradd -md /home/admin -s /bin/bash admin
+          usermod -aG sudo admin
+          su admin
+      - name: Check id and groups
+        run: |
+          echo "ID: $(whoami)"
+          echo "Groups: $(groups)"
       - name: Run init
         run: ./home/.local/bin/task init
   archlinux:
