@@ -72,7 +72,7 @@ tasks:
       # ssh-key
       - cmd: |
           TYPE=rsa
-          if [[ -f ~/.ssh/$TYPE ]]; then ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE; fi
+          if ! [[ -f ~/.ssh/$TYPE ]]; then ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE; fi
       # brew
       - cmd: |
           echo hihi $TYPE
