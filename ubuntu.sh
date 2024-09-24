@@ -14,12 +14,6 @@ sudo apt-get install -qqy \
 sudo apt-get install -qqy \
     golang-go snapd 
 
-( # gnome 
-    # NOTE moved to gnome
-    sudo apt-get install -qqy gnome-tweaks gnome-terminal gnome-shell-extensions gnome-shell-extension-manager
-    sudo pip install -qU gnome-extensions-cli
-)
-
 ( # brew
     if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
 
@@ -29,7 +23,6 @@ sudo apt-get install -qqy \
 )
 
 ( # ssh-key
-    # TODO move to home
     TYPE=rsa
     ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
 )

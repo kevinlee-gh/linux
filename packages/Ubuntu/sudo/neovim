@@ -1,7 +1,6 @@
 #!/bin/bash
 sudo apt-get install -y ruby-full nodejs npm ripgrep
 sudo npm install -g neovim
-
-brew install neovim
-
 /usr/bin/pip3 install neovim
+
+sudo apt-get install -y neovim

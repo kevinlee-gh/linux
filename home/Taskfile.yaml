@@ -7,8 +7,8 @@ tasks:
     #   vars:
     #     - ROOT_DIR
     cmds: 
-      - mkdir -p ~/.local ~/workspace
-      - mkdir -p ~/.local/bin ~/.local/lib ~/.local/envs
+      - mkdir -p ~/workspace
+      - mkdir -p ~/.local/bin ~/.local/lib ~/.local/envs ~/.local/bash-completion/completions
       - mkdir -p ~/.config ~/.fonts
       # - for:
       #     - .local/envs
@@ -25,8 +25,8 @@ tasks:
     deps:
       - init
     cmds: 
-      - "[[ -d ~/.local ]] && [[ -d ~/workspace ]]"
-      - "[[ -d ~/.local/bin ]] && [[ -d ~/.local/lib ]] && [[ -d ~/.local/envs ]]"
+      - "[[ -d ~/workspace ]]" 
+      - "[[ -d ~/.local/bin ]] && [[ -d ~/.local/lib ]] && [[ -d ~/.local/envs ]] && [[ -d ~/.local/bash-completion/completions ]]"
       - "[[ -d ~/.config ]] && [[ -d ~/.config ]]"
       - echo DONE!
   setup: 

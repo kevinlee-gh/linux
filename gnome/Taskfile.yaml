@@ -15,7 +15,7 @@ tasks:
     deps:
       - __prerequisites__
     preconditions: 
-      - sh: "[[ '{{ .DEVICE_TYPE }}' != 'PC' || -z '$(ls -A /usr/share/xsessions/)' ]]"
+      - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]"
         msg: "'DEVICE_TYPE' must be 'PC' and have Gnome in device"
     cmds:
       # Multi-tasking

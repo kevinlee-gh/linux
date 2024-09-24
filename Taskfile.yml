@@ -9,10 +9,10 @@ env:
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
 
 tasks:
-  setup:
-    desc: Setup working env for device. 
-    dir: '{{ .TASKFILE_DIR }}'
-    vars: 
+  _shared:
+    internal: true  
+    desc: Internal Task for declaring shared block
+    vars: &shared_vars
       DISTRO_ID: 
         sh: cat /etc/*-release | grep -e "^NAME=" | sed 's:^NAME=::' | sed 's:"::g'
       DEVICE_TYPE: 
@@ -33,7 +33,7 @@ tasks:
           else 
             echo FALSE
           fi
-    preconditions: 
+    preconditions: &shared_preconditions
       # Validate `DEVICE_TYPE`
       - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' || '{{ .DEVICE_TYPE }}' == 'SERVER' ]]"
         msg: "'DEVICE_TYPE' must be 'PC' or 'SERVER', not '{{ .DEVICE_TYPE }}'"
@@ -45,40 +45,76 @@ tasks:
       # Validate `IS_SUDOER`
       - sh: "[[ '{{ .IS_SUDOER }}' == 'TRUE' || '{{ .IS_SUDOER }}' == 'FALSE' ]]"
         msg: "'IS_SUDOER' must be 'TRUE' or 'FALSE', not '{{ .IS_SUDOER }}'"
-    
-    env: 
-      DEVICE_TYPE: '{{ .DEVICE_TYPE }}'
-      DISTRO_ID: '{{ .DISTRO_ID }}'
-      IS_SUDOER: '{{ .IS_SUDOER }}'
+      - sh: "[[ '{{ .IS_SUDOER }}' == 'TRUE' ]]"
+        msg: "Not supported for 'IS_SUDOER={{ .IS_SUDOER }}'"
+  init: 
+    desc: Setup for new machine
+    dir: '{{ .TASKFILE_DIR }}'
+    vars: *shared_vars
+    preconditions: *shared_preconditions
+    prompt: |
+      Install with: 
+        + DEVICE_TYPE: '{{ .DEVICE_TYPE }}'
+        + DISTRO_ID: '{{ .DISTRO_ID }}'
+        + IS_SUDOER:  '{{ .IS_SUDOER }}'
     cmds: 
-      # TODO: PROMPT Confirm
-      - echo hihi $DEVICE_TYPE $DISTRO_ID $IS_SUDOER
+      # Install base packages
+      - cmd: |
+          sudo add-apt-repository -ny universe
+          sudo apt update -qq && sudo apt upgrade -qqy
+          sudo apt-get install -qqy \
+            build-essential procps file screenfetch \
+            curl wget git vim xclip bash-completion \
+            fio pwgen python3-pip \
+          sudo apt-get install -qqy golang-go snapd
+      # brew
+      - cmd: |
+          if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
+          mkdir -p ~/.local/lib/homebrew
+          curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.local/lib/homebrew
+          ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin
+      # ssh-key
+      - cmd: |
+          TYPE=rsa
+          ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE
+      # Init Home for config files
+      - task: home:init&verify
+      # Install GUI packages
+      - cmd: |
+          if [[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]; then
+            for package in $( ls ./packages/{{ .DISTRO_ID }}/gui ) do
+              bash ./packages/{{ .DISTRO_ID }}/gui/${package} &&
+            fi
+          fi
+      # Install sudo packages
+      - cmd: |
+          for package in $( ls -p ./packages/{{ .DISTRO_ID }}/sudo | grep -v "/"); do 
+            bash ./packages/{{ .DISTRO_ID }}/sudo/${package} &&
+          done
+      # Install shared packages
+      - cmd: |
+          for package in $( ls -p ./packages/{{ .DISTRO_ID }}/shared | grep -v "/"); do 
+            bash ./packages/{{ .DISTRO_ID }}/shared/${package} &&
+          done
+      # Install personal packages
+      - cmd: |
+          for package in $( ls -p ./packages/{{ .DISTRO_ID }}/personal | grep -v "/"); do 
+            bash ./packages/{{ .DISTRO_ID }}/personal/${package} &&
+          done
+      - task: setup
+  setup:
+    desc: Setup working env for user. 
+    dir: '{{ .TASKFILE_DIR }}'
+    vars: *shared_vars
+    preconditions: *shared_preconditions
+    prompt: |
+      Setting with: 
+        + DEVICE_TYPE: '{{ .DEVICE_TYPE }}'
+        + DISTRO_ID: '{{ .DISTRO_ID }}'
+        + IS_SUDOER:  '{{ .IS_SUDOER }}'
+    cmds: 
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' ]] && [[ -n '$(ls -A /usr/share/xsessions/)' ]]; then
             ${ROOT_DIR}/gnome/setup.sh
           fi
       - task: home:init&verify
-      
-      # - task: __home.init__
-      # - task: __terminal__
-      # - task: __home.setup__
-      #   vars:
-      #     DEVICE_TYPE:
-      #       ref: .DEVICE_TYPE
-  # __home.init__:
-  #   desc: Init ~ dir
-  #   dir: '{{ .TASKFILE_DIR }}'
-  #   cmds:
-  #     - ${ROOT_DIR}/home/init.sh
-  # __terminal__:
-  #   desc: Setup terminal
-  #   dir: '{{ .TASKFILE_DIR }}'
-  #   cmds:
-  #     - ${ROOT_DIR}/terminal/setup.sh
-  # __home.setup__:
-  #   desc: Setup ~ dir
-  #   requires:
-  #     vars:
-  #       - DEVICE_TYPE
-  #   cmds:
-  #     - ${ROOT_DIR}/home/setup.sh

@@ -10,7 +10,7 @@ sudo apt-get update -qq && sudo apt-get install -qqy google-cloud-cli
 
 ln -sf /usr/lib/google-cloud-sdk/completion.bash.inc ~/.local/bash-completion/completions/gcloud.bash.inc
 
-gcloud auth login
-gcloud init
+# gcloud auth login
+# gcloud init
 
 sudo apt-get -y install google-cloud-sdk-gke-gcloud-auth-plugin
