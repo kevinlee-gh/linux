@@ -12,6 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Setup sudoer
+        run: |
+          apt-get update
+          apt-get install -y sudo
+          usermod -aG sudo root
       - name: Run init
         run: ./home/.local/bin/task init
   archlinux:
