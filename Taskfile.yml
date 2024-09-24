@@ -75,7 +75,6 @@ tasks:
           if ! [[ -f ~/.ssh/$TYPE ]]; then ssh-keygen -t $TYPE -C "kienlt" -N '' -f ~/.ssh/$TYPE; fi
       # brew
       - cmd: |
-          echo hihi $TYPE
           if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
           mkdir -p ~/.local/lib/homebrew
           curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.local/lib/homebrew
@@ -83,7 +82,7 @@ tasks:
       # Install GUI packages
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]; then
-            for package in $( ls ./packages/{{ .DISTRO_ID }}/gui ) do
+            for package in $( ls ./packages/{{ .DISTRO_ID }}/gui ); do
               bash ./packages/{{ .DISTRO_ID }}/gui/${package} &&
             fi
           fi
