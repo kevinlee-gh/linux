@@ -17,6 +17,7 @@ jobs:
           apt-get update
           apt-get install -y sudo
           usermod -aG sudo root
+          sudo su - root
       - name: Run init
         run: ./home/.local/bin/task init
   archlinux:
