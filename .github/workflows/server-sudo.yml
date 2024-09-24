@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-defaults:
-  run:
-    shell: bash
 jobs:
   ubuntu-2004:
     container: "ubuntu:20.04"
@@ -17,17 +14,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install sudo
         run: |
-          apt-get update
+          apt-get update; 
           apt-get install -y sudo
       - name: Create sudoer and switch
         run: |
-          useradd -md /home/admin -s /bin/bash admin
-          usermod -aG sudo admin
-          su - admin
+          useradd -md /home/admin -s /bin/bash admin;
+          usermod -aG sudo admin;
+          su - admin;
           echo "ID: $(whoami)"
       - name: Check id and groups
         run: |
-          echo "ID: $(whoami)"
+          echo "ID: $(whoami)";
           echo "Groups: $(groups)"
       - name: Run init
         run: ./home/.local/bin/task init
