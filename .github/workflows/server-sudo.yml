@@ -12,12 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup sudoer
+      - name: Install sudo
         run: |
           apt-get update
           apt-get install -y sudo
-          usermod -aG sudo root
-          sudo su - root
+      - name: Add groups
+        run: usermod -aG sudo root
+      - name: Switch to get groups
+        run: sudo su - root
       - name: check groups
         run: groups
       - name: Run init
