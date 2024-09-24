@@ -83,23 +83,23 @@ tasks:
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]; then
             for package in $( ls ./packages/{{ .DISTRO_ID }}/gui ); do
-              bash ./packages/{{ .DISTRO_ID }}/gui/${package} &&
+              bash ./packages/{{ .DISTRO_ID }}/gui/${package} 
             done
           fi
       # Install sudo packages
       - cmd: |
           for package in $( ls -p ./packages/{{ .DISTRO_ID }}/sudo | grep -v "/"); do 
-            bash ./packages/{{ .DISTRO_ID }}/sudo/${package} &&
+            bash ./packages/{{ .DISTRO_ID }}/sudo/${package} 
           done
       # Install shared packages
       - cmd: |
           for package in $( ls -p ./packages/{{ .DISTRO_ID }}/shared | grep -v "/"); do 
-            bash ./packages/{{ .DISTRO_ID }}/shared/${package} &&
+            bash ./packages/{{ .DISTRO_ID }}/shared/${package} 
           done
       # Install personal packages
       - cmd: |
           for package in $( ls -p ./packages/{{ .DISTRO_ID }}/personal | grep -v "/"); do 
-            bash ./packages/{{ .DISTRO_ID }}/personal/${package} &&
+            bash ./packages/{{ .DISTRO_ID }}/personal/${package} 
           done
       - task: setup
   setup:
