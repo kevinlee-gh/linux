@@ -24,10 +24,9 @@ function dotenv() {
         fi
 
         # Get envs from env file
-        if [[ -z "$HIDE_ENVS" ]] ; then
-            echo Get env from $i:
-            linesExceptCommentOrBlankLines | grep -P "$validRegex" | sed 's/^/  * /'
-        fi
+        echo Get env from $i:
+        linesExceptCommentOrBlankLines | grep -P "$validRegex" | sed 's/^/  * /'
+
         while read line; do 
             export "$line"
         done < <(linesExceptCommentOrBlankLines)
