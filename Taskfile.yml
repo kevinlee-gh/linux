@@ -79,7 +79,9 @@ tasks:
           if [ -d ~/.local/lib/homebrew ]; then rm -rf ~/.local/lib/homebrew; fi
           mkdir -p ~/.local/lib/homebrew
           curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ~/.local/lib/homebrew
-          ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin
+
+          if [ -f ~/.local/bin/brew ]; then rm -rf ~/.local/bin/brew; fi
+          ln -sf ~/.local/lib/homebrew/bin/brew ~/.local/bin/brew
       # Install GUI packages
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' && -n '$(ls -A /usr/share/xsessions/)' ]]; then
