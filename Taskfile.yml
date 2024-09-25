@@ -51,7 +51,7 @@ tasks:
     desc: Setup for new machine
     dir: '{{ .TASKFILE_DIR }}'
     vars: 
-      <<: shared_vars
+      <<: *shared_vars
       PATH: ~/.local/bin:${PATH}
 
     preconditions: *shared_preconditions
