@@ -123,6 +123,7 @@ tasks:
             bash ./packages/{{ .DISTRO_ID }}/personal/${package} 
           done
       - task: setup
+      - sudo reboot
   setup:
     desc: Setup working env for user. 
     dir: '{{ .TASKFILE_DIR }}'
