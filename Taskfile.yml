@@ -5,6 +5,8 @@ includes:
     taskfile: ./home
     internal: true
 
+dotenv:
+  - .env
 env: 
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
 
@@ -33,7 +35,6 @@ tasks:
           else 
             echo FALSE
           fi
-      PATH: "~/.local/bin:{{ .PATH }}"
     preconditions: &shared_preconditions
       # Validate `DEVICE_TYPE`
       - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' || '{{ .DEVICE_TYPE }}' == 'SERVER' ]]"
@@ -71,7 +72,6 @@ tasks:
           sudo apt-get install -qqy golang-go snapd
       # Init Home for config files
       - task: home:init&verify
-      - echo "PATH - ${PATH}"
       # ssh-key
       - cmd: |
           TYPE=rsa
