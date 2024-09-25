@@ -7,7 +7,6 @@ includes:
 
 env: 
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
-  PATH: "~/.local/bin:${PATH}"
 
 tasks:
   _shared:
@@ -34,6 +33,7 @@ tasks:
           else 
             echo FALSE
           fi
+      PATH: "~/.local/bin:{{ .PATH }}"
     preconditions: &shared_preconditions
       # Validate `DEVICE_TYPE`
       - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' || '{{ .DEVICE_TYPE }}' == 'SERVER' ]]"
