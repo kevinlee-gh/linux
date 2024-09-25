@@ -1,19 +1,59 @@
 version: '3'
 
 tasks:
-  init: 
-    desc: Init ~ dir
-    # requires:
-    #   vars:
-    #     - ROOT_DIR
+  _home.link_elements: 
+    internal: true
+    requires:
+      vars:
+        - SOURCE_DIR
+        - DES_DIR
+    cmds: 
+      - cmd: |
+          for elem in $(ls {{ .SOURCE_DIR }}); do
+            if [ -f {{ .DES_DIR }}/${elem} ]; then rm -rf {{ .DES_DIR }}/${elem}; fi
+            ln -s {{ .SOURCE_DIR }}/${elem} {{ .DES_DIR }}/${e}
+          done
+  _home: 
+    internal: true
     cmds: 
       - mkdir -p ~/workspace
       - mkdir -p ~/.local/bin ~/.local/lib ~/.local/envs ~/.local/bash-completion/completions
       - mkdir -p ~/.config ~/.fonts
 
       - if [ -f ~/.bash_aliases ]; then rm -rf ~/.bash_aliases; fi
+
+      # ~/.local/lib
+      - task: _home.link_elements
+        vars:
+          SOURCE_DIR: '{{ .TASKFILE_DIR }}/.local/lib'
+          DES_DIR: '~/.local/lib'
+      # ~/.config
+      - task: _home.link_elements
+        vars:
+          SOURCE_DIR: '{{ .TASKFILE_DIR }}/.config'
+          DES_DIR: '~/.config'
+      # ~/.local/bin
+      - task: _home.link_elements
+        vars:
+          SOURCE_DIR: '{{ .TASKFILE_DIR }}/.local/bin'
+          DES_DIR: '~/.local/bin'
       
-      # - if [ -f ~/.local/lib/bash_dotfiles ]
+      # ~/.local/envs
+      - cmd: |
+          if [ -d ~/.local/envs ]; then rm -rf ~/.local/envs; fi
+          ln -sf {{ .TASKFILE_DIR }}/.local/envs ~/.local/envs
+
+      # ~/.font
+      - cmd: |
+          if [ -d ~/.font ]; then rm -rf ~/.font; fi
+          ln -sf {{ .TASKFILE_DIR }}/.font ~/.font
+
+  init: 
+    desc: Init ~ dir
+    cmds: 
+      - task: _home
+      
+      
       
   init&verify:
     desc: task init and verify

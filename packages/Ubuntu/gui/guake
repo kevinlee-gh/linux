@@ -1,2 +1,4 @@
 #!/bin/bash
 sudo apt-get install -y guake
+
+guake --restore-preferences ~/.config/guake/custom.cfg
