@@ -1,0 +1,1 @@
+export PATH=~/.local/bin:~/go/bin:~/.local/lib/google-cloud-sdk/bin/:$PATH

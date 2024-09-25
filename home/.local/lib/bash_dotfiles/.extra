@@ -1,0 +1,10 @@
+# Auto complete bash
+for completion_bash in ~/.local/bash-completion/completions/* ; do 
+    source "$completion_bash"
+done
+
+# Load envs
+HIDE_ENVS=1 dotenv ~/.local/envs/.env*
+
+# Starship
+eval "$(starship init bash)"

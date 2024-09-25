@@ -1,13 +1,4 @@
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/.local/lib/google-cloud-sdk/path.bash.inc' ]; then . '~/.local/lib/google-cloud-sdk/path.bash.inc'; fi
-
-# Auto complete bash
-for completion_bash in ~/.local/bash-completion/completions/* ; do 
-    source "$completion_bash"
-done
-
-# Custom functions
-
+#!/bin/bash
 function dotenv() {
     ############################
     # Load env from .env files #
@@ -42,9 +33,3 @@ function dotenv() {
         done < <(linesExceptCommentOrBlankLines)
     done
 }
-
-# Load envs
-HIDE_ENVS=1 dotenv ~/.local/envs/.env*
-
-# Starship
-eval "$(starship init bash)"

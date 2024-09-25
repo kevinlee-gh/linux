@@ -1,0 +1,4 @@
+#!/bin/bash
+# Fast move
+alias cdw="cd ~/workspace"
+alias cdr='cd $(git rev-parse --show-toplevel)'
