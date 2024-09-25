@@ -5,8 +5,6 @@ includes:
     taskfile: ./home
     internal: true
 
-dotenv:
-  - .env
 env: 
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
 
@@ -53,7 +51,6 @@ tasks:
     desc: Setup for new machine
     dir: '{{ .TASKFILE_DIR }}'
     vars: *shared_vars
-
     preconditions: *shared_preconditions
     prompt: |
       Install with: 
