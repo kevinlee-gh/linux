@@ -52,8 +52,7 @@ tasks:
     desc: Init ~ dir
     cmds: 
       - task: _home
-      
-      
+      - '{{ .TASKFILE_DIR }}/../utils/add_file_to_file {{ .TASKFILE_DIR }}/.bashrc ~/.bashrc "PERSONAL CUSTOMIZATIONS"'
       
   init&verify:
     desc: task init and verify
