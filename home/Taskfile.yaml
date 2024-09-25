@@ -10,8 +10,8 @@ tasks:
     cmds: 
       - cmd: |
           for elem in $(ls {{ .SOURCE_DIR }}); do
-            if [ -f {{ .DES_DIR }}/${elem} ]; then rm -rf {{ .DES_DIR }}/${elem}; fi
-            ln -s {{ .SOURCE_DIR }}/${elem} {{ .DES_DIR }}/${elem}
+            if [ -e {{ .DES_DIR }}/${elem} ]; then rm -rf {{ .DES_DIR }}/${elem}; fi
+            ln -sf {{ .SOURCE_DIR }}/${elem} {{ .DES_DIR }}/${elem}
           done
   _home: 
     internal: true
