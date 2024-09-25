@@ -33,6 +33,16 @@ tasks:
           else 
             echo FALSE
           fi
+      HAS_NVIDIA_CARD:
+        sh: |
+          if [[ -n '{{ .HAS_NVIDIA_CARD }}' ]]; then
+            echo {{ .HAS_NVIDIA_CARD }}
+          elif [[ -n $(lshw -C display | grep NVIDIA) ]] > /dev/null 2>&1; then
+            echo TRUE
+          else
+            echo FALSE
+          fi
+
     preconditions: &shared_preconditions
       # Validate `DEVICE_TYPE`
       - sh: "[[ '{{ .DEVICE_TYPE }}' == 'PC' || '{{ .DEVICE_TYPE }}' == 'SERVER' ]]"
@@ -47,6 +57,10 @@ tasks:
         msg: "'IS_SUDOER' must be 'TRUE' or 'FALSE', not '{{ .IS_SUDOER }}'"
       - sh: "[[ '{{ .IS_SUDOER }}' == 'TRUE' ]]"
         msg: "Not supported for 'IS_SUDOER={{ .IS_SUDOER }}'"
+      
+      # Validate `HAS_NVIDIA_CARD`
+      - sh: "[[ '{{ .HAS_NVIDIA_CARD }}' == 'TRUE' || '{{ .HAS_NVIDIA_CARD }}' == 'FALSE' ]]"
+        msg: "'HAS_NVIDIA_CARD' must be 'TRUE' or 'FALSE', not '{{ .HAS_NVIDIA_CARD }}'"
   init: 
     desc: Setup for new machine
     dir: '{{ .TASKFILE_DIR }}'
@@ -57,6 +71,7 @@ tasks:
         + DEVICE_TYPE: '{{ .DEVICE_TYPE }}'
         + DISTRO_ID: '{{ .DISTRO_ID }}'
         + IS_SUDOER:  '{{ .IS_SUDOER }}'
+        + HAS_NVIDIA_CARD: '{{ .HAS_NVIDIA_CARD }}'
     cmds: 
       # Install base packages
       - cmd: |
@@ -67,6 +82,10 @@ tasks:
             curl wget git vim xclip bash-completion \
             fio pwgen python3-pip
           sudo apt-get install -qqy golang-go snapd
+      - cmd: |
+          if [[ '{{ .HAS_NVIDIA_CARD }}' == 'TRUE' ]]; then
+            sudo apt install -qqy nvidia-utils-535-server
+          fi
       # Init Home for config files
       - task: home:init&verify
       # ssh-key
