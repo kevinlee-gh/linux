@@ -3,7 +3,7 @@
 # alias feat='echo "feat($(branch))"'
 # alias fix='echo "fix($(branch))"'
 
-export PATH=~/.local/bin:~/go/bin:/snap/bin:~/.local/lib/google-cloud-sdk/bin/:$PATH
+export PATH=~/.local/bin:~/go/bin:~/.local/lib/google-cloud-sdk/bin/:$PATH
 
 # Fast move
 alias cdw="cd ~/workspace"
