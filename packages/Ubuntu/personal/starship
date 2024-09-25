@@ -1,3 +1,2 @@
 #!/bin/bash
-BIN_DIR=~/.local/bin
-curl -sS https://starship.rs/install.sh | sh
+BIN_DIR=~/.local/bin curl -sS https://starship.rs/install.sh | sh
