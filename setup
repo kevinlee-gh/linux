@@ -1,4 +1,0 @@
-#!/bin/bash
-FILE_DIR=$(dirname `realpath $0`)
-
-${FILE_DIR}/home/.local/bin/task setup $@
