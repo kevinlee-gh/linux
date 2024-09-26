@@ -20,7 +20,7 @@ tasks:
     cmds:
       # Multi-tasking
       - cmd: |
-          gsettings set org.gnome.app-switcher current-workspace-only false
+          gsettings set org.gnome.shell.app-switcher current-workspace-only false
           gsettings set org.gnome.mutter workspaces-only-on-primary false
       
       # Appearances
@@ -59,7 +59,7 @@ tasks:
           
           ( # Set detail
               for i in "${!LS_KEYBINDINGS[@]}"; do 
-                  IFS=':' read -ra keybinding <<< "${LS_KEYBINDINGS[$i]}"
+                  IFS=':' keybinding=(${LS_KEYBINDINGS})
 
                   gsettings set "${CONFIG_DOT}:${CONFIG_PATH}/custom${i}/" name "${keybinding[0]}"
                   gsettings set "${CONFIG_DOT}:${CONFIG_PATH}/custom${i}/" command "${keybinding[1]}"

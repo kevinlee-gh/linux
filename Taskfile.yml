@@ -4,6 +4,9 @@ includes:
   home: 
     taskfile: ./home
     internal: true
+  gnome: 
+    taskfile: ./gnome
+    internal: true
 
 env: 
   ROOT_DIR: '{{ .TASKFILE_DIR }}'
@@ -137,6 +140,6 @@ tasks:
     cmds: 
       - cmd: |
           if [[ '{{ .DEVICE_TYPE }}' == 'PC' ]] && [[ -n '$(ls -A /usr/share/xsessions/)' ]]; then
-            ${ROOT_DIR}/gnome/setup.sh
+            task -d={{ .TASKFILE_DIR }}/gnome setup IS_SUDOER={{ .IS_SUDOER }} DEVICE_TYPE={{ .DEVICE_TYPE }}
           fi
       - task: home:init&verify
