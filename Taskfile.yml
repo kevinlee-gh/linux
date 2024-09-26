@@ -114,7 +114,7 @@ tasks:
       - cmd: |
           if [[ '{{ .HAS_NVIDIA_CARD }}' == 'TRUE' ]]; then
             # nvidia-driver
-            sudo apt install -qqy nvidia-utils-535-server nvidia-driver-535-server
+            sudo apt install -qqy nvidia-utils-535 nvidia-driver-535
             # nvidia-container-toolkit
             curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
               && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
