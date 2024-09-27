@@ -1,7 +1,8 @@
 #!/bin/bash
 
-sudo apt-get install -qqy dnsmasq
-
+# turn off process using port 53
 sudo systemctl stop systemd-resolved
 sudo systemctl disable systemd-resolved
 sudo systemctl mask systemd-resolved
+
+sudo apt-get install -qqy dnsmasq
