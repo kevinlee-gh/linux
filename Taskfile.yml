@@ -122,7 +122,7 @@ tasks:
                 sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
             sudo sed -i -e '/experimental/ s/^#//g' /etc/apt/sources.list.d/nvidia-container-toolkit.list
             sudo apt-get update
-            sudo apt-get install -qqy nvidia-container-toolkit
+            sudo apt-get install -qqy nvidia-container-toolkit nvidia-cuda-toolkit
             sudo nvidia-ctk runtime configure --runtime=docker
             sudo systemctl restart docker
           fi
