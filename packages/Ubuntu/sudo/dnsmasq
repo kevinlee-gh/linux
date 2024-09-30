@@ -1,16 +1,16 @@
-#!/bin/bash
-## to revert
-# sudo systemctl stop dnsmasq
-# sudo systemctl enable systemd-resolved
-# sudo systemctl start systemd-resolved
-# sudo rm /etc/resolv.conf
-# sudo ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+# #!/bin/bash
+# ## to revert
+# # sudo systemctl stop dnsmasq
+# # sudo systemctl enable systemd-resolved
+# # sudo systemctl start systemd-resolved
+# # sudo rm /etc/resolv.conf
+# # sudo ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 
-sudo apt-get install -qqy dnsmasq
+# sudo apt-get install -qqy dnsmasq
 
-# turn off process using port 53
-sudo systemctl stop systemd-resolved
-sudo systemctl disable systemd-resolved
-# sudo systemctl mask systemd-resolved
-sudo unlink /etc/resolv.conf
-echo nameserver 127.0.0.1 | sudo tee /etc/resolv.conf
+# # turn off process using port 53
+# sudo systemctl stop systemd-resolved
+# sudo systemctl disable systemd-resolved
+# # sudo systemctl mask systemd-resolved
+# sudo unlink /etc/resolv.conf
+# echo nameserver 127.0.0.1 | sudo tee /etc/resolv.conf
