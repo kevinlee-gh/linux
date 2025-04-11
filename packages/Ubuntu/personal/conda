@@ -7,3 +7,6 @@ rm -rf ~/.miniconda3/miniconda.sh
 ln -sf ~/.miniconda3/bin/conda ~/.local/bin/conda
 
 conda init
+
+conda install -y -c conda-forge conda-bash-completion
+ln -sf ~/.miniconda3/etc/profile.d/bash_completion.sh ~/.local/bash-completion/completions/conda.bash.inc
