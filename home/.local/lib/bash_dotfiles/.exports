@@ -3,3 +3,4 @@ export VISUAL=nvim
 export EDITOR=nvim
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export KUBECONFIG=$(find ~/.kube/config.d -type f -printf '%p:' | sed 's/:$//')
