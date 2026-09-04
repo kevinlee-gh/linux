@@ -4,3 +4,5 @@ export EDITOR=nvim
 
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export KUBECONFIG=$(find ~/.kube/config.d -type f -printf '%p:' | sed 's/:$//')
+
+export CLAUDE_CODE_DISABLE_MOUSE=1 
